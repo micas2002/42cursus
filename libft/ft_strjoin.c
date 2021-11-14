@@ -6,40 +6,48 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 13:57:23 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/11 12:38:57 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/14 17:35:59 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strcat(char *dest, char *src)
+static char	*join(char *str, char *dest, char *src)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int		x;
+	int		y;
 
-	i = 0;
-	while (dest[i] != '\0')
-		++i;
-	j = 0;
-	while (src[j] != '\0')
+	y = 0;
+	x = 0;
+	while (str)
 	{
-		dest[i] = src[j];
-		i++;
-		++j;
+		while (dest)
+		{
+			str[x] = dest[x];
+			x++;
+		}
+		while (src)
+		{
+			str[x] = src[y];
+			x++;
+			y++;
+		}
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (str);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
+	char	*dest;
+	char	*src;
 
+	dest = s1;
+	src = s2;
 	str = (char *)malloc(sizeof(char)
-			* (ft_strlen((char *)(s1)) + ft_strlen((char *)(s2))));
+			* (strlen((char *)(s1)) + strlen((char *)(s2)) + 1));
 	if (!str)
 		return (NULL);
-	if (str)
-		ft_strcat(ft_strcat(str, (char *)s1), (char *)s2);
+	join(str, dest, src);
 	return (str);
 }
