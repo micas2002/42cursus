@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 10:49:06 by mibernar          #+#    #+#             */
-/*   Updated: 2021/10/28 15:04:44 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/13 16:21:17 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	int		x;
+	char	chr;
 	char	*ptr;
 
 	x = 0;
+	chr = c;
 	ptr = (void *)s;
 	while (ptr[x] != '\0')
 	{
@@ -25,7 +27,7 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	while (x >= 0)
 	{
-		if (ptr[x] == c)
+		if (ptr[x] == chr)
 		{
 			return (&ptr[x]);
 		}
