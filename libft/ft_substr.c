@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:35:51 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/15 14:14:58 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:03:47 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,29 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	x;
-	size_t	y;
-	size_t	ctrl_len;
+	unsigned int	i;
+	unsigned int	j;
+	char			*str;
 
-	if ((start >= ft_strlen(s)) || (len == 0))
-		return (ft_calloc(1, sizeof(char)));
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (ft_strlen(s) < len)
+		str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	else if (start > ft_strlen(s))
+		str = (char *)malloc(sizeof(char) * 1);
+	else
+		str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);
-	x = start;
-	y = 0;
-	ctrl_len = 0;
-	while (ctrl_len < len)
+	i = 0;
+	j = 0;
+	while (s[i])
 	{
-		str[y] = s[x];
-		x++;
-		y++;
-		ctrl_len++;
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
 	}
-	str[y] = '\0';
+	str[j] = 0;
 	return (str);
 }

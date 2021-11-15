@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 12:13:08 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/15 10:40:08 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:05:10 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**ft_split(char const *s, char c)
 	{
 		x = trim_size(s, c, a);
 		a = str_size(s, c, a);
-		str[i] = malloc(sizeof(char) * (x + 1));
+		str[i] = (char *)malloc(sizeof(char) * x + 1);
 		str[i] = ft_substr(s, (unsigned int)(a - x), x);
 		i++;
 	}
