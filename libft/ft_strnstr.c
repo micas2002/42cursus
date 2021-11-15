@@ -6,51 +6,32 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 10:57:28 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/14 16:45:39 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:26:56 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strcmp(const char *str, const char *to_find, int x)
-{
-	int	y;
-
-	y = 0;
-	while (to_find[y] != '\0')
-	{
-		if (to_find[y] == str[x])
-		{
-			x++;
-			y++;
-		}
-		else
-			return (0);
-	}
-	return (1);
-}
-
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	x;
+	size_t	i;
 
+	x = 0;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
 	while (haystack[x] != '\0' && x < len)
 	{
 		if (haystack[x] == needle[0])
 		{
-			if (ft_strcmp(haystack, needle, x) == 1)
-			{
-				return ((char *)haystack + x);
-			}
-			else
-				return (NULL);
-		}
-		else if (needle[0] == '\0')
-		{
-			return ((char *)haystack);
+			i = 1;
+			while (needle[i] != '\0' && haystack[x + i] == needle[i] &&
+				(size_t)(x + i) < len)
+				++i;
+			if (needle[i] == '\0')
+				return ((char *) &haystack[x]);
 		}
 		x++;
-		len--;
 	}
-	return (0);
+	return (NULL);
 }
