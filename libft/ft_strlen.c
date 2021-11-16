@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:05:02 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/11 11:19:03 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:47:43 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ size_t	ft_strlen(const char *s)
 
 	x = 0;
 	while (s[x] != '\0')
-	{
 		x++;
-	}
 	return (x);
 }
