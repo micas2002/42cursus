@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:22:37 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/02 13:35:19 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:06:15 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	int		x;
 
 	x = 0;
+	if (!s)
+		return ;
 	while (s[x])
 	{
 		(*f)(x, &s[x]);
