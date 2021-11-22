@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:10 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/22 11:20:30 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:07:11 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@
 
 // PROTOTYPES
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
+char		*get_next_line(int fd);
+size_t		ft_strlen(const char *s);
+static char	ft_strcpy(char *dst, const char *src);
+char		*ft_strdup(const char *s1);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strchr(const char *s, int c);
 
 #endif
