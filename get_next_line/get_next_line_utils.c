@@ -6,7 +6,18 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/17 16:11:07 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:20:17 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	x;
+
+	x = 0;
+	while (s[x] != '\0')
+		x++;
+	return (x);
+}
