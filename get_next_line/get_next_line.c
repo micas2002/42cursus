@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/22 16:17:36 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:51:13 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,26 @@ char	*get_next_line(int fd)
 	while (read(fd, buffer, 23) > 0)
 	{
 		size = read(fd, buffer, 23);
-		buffer[size] = '\0';
-		if (str[fd] == NULL)
+		str = malloc(sizeof(char) * (size + 1));
+		str[size] = '\0';
+		if (str[0] == '\0')
 			str = ft_strdup(buffer);
 		else
 		{
-			temp = ft_strjoin((const char *)str[fd], buffer);
-			free (str[fd]);
-			str[fd] = temp;
+			temp = ft_strjoin(str, buffer);
+			free (str);
+			str = temp;
 		}
-		if (ft_strchr(str[fd], '\n'))
+		if (ft_strchr(str, '\n'))
 			break ;
 	}
-	printf("%s", buffer);
-	return (buffer);
+	printf("%s", str);
+	return (str);
 }
 
 int main(void)
 {
-	int fd = open("/home/miguel/Desktop/get_next_line.txt", O_RDONLY);
+	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
 
 	get_next_line(fd);
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/22 16:06:58 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:58:55 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (x);
 }
 
-static char	ft_strcpy(char *dst, const char *src)
+char	ft_strcpy(char *dst, const char *src)
 {
 	int	x;
 
