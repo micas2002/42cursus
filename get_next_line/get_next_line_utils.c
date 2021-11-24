@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/23 15:58:55 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:37:57 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ char	*ft_strchr(const char *s, int c)
 	while (x <= y)
 	{
 		if (ptr[x] == chr)
-		{
 			return (&ptr[x]);
-		}
 		x++;
 	}
 	return (NULL);
