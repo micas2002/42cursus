@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/25 12:45:06 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/25 17:04:08 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,31 @@ char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		buffer[BUFFER_SIZE];
-	static int	new_line_pos;
 	static int	i;
 	int			x;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, buffer, BUFFER_SIZE) < 1)
 		return (NULL);
-	new_line_pos = find_new_line(buffer);
 	x = 0;
 	i = 0;
-	if (read(fd, buffer, BUFFER_SIZE) > 0)
+	str = malloc(sizeof(char) * BUFFER_SIZE);
+	if (str[0] == '\0')
 	{
-		str = malloc(sizeof(char) * BUFFER_SIZE);
-		if (str[0] == '\0')
-			while (i < new_line_pos)
-			{
-				str[x] = buffer[i];
-				i++;
-				x++;
-			}
-		else
+		while (i < find_new_line(buffer))
 		{
-			free (str);
-			while (i < new_line_pos)
-			{
-				str[x] = buffer[i];
-				i++;
-				x++;
-			}
+			str[x] = buffer[i];
+			i++;
+			x++;
+		}
+	}
+	else
+	{
+		free (str);
+		while (i < find_new_line(buffer))
+		{
+			str[x] = buffer[i];
+			i++;
+			x++;
 		}
 	}
 	printf("%s", str);
@@ -64,7 +61,7 @@ char	*get_next_line(int fd)
 
 int main(void)
 {
-	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
+	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
 
 	get_next_line(fd);
 	close(fd);
