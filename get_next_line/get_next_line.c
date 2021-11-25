@@ -6,47 +6,56 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/24 17:13:21 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:45:06 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	find_new_line(char *buffer, int x)
+int	find_new_line(char *buffer)
 {
 	static int	a;
 
 	a = 0;
-	while (buffer[a] != '\n')
-	{
+	while (buffer[a] == '\n')
 		a++;
-		x++;
-	}
-	a++;
-	return (x);
+	while (buffer[a] != '\n')
+		a++;
+	return (a);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*str;
-	char		*buffer[BUFFER_SIZE];
+	char		buffer[BUFFER_SIZE];
+	static int	new_line_pos;
+	static int	i;
 	int			x;
-	int			y;
-	static int	new_line_position;
 
 	if (fd < 0)
 		return (NULL);
+	new_line_pos = find_new_line(buffer);
 	x = 0;
-	new_line_position = 0;
-	while (read(fd, buffer, BUFFER_SIZE) > 0)
+	i = 0;
+	if (read(fd, buffer, BUFFER_SIZE) > 0)
 	{
-		find_new_line(*buffer, new_line_position);
-		free(str);
-		while (x < new_line_position)
+		str = malloc(sizeof(char) * BUFFER_SIZE);
+		if (str[0] == '\0')
+			while (i < new_line_pos)
+			{
+				str[x] = buffer[i];
+				i++;
+				x++;
+			}
+		else
 		{
-			str[x] = buffer[y];
-			x++;
-			y++;
+			free (str);
+			while (i < new_line_pos)
+			{
+				str[x] = buffer[i];
+				i++;
+				x++;
+			}
 		}
 	}
 	printf("%s", str);
@@ -55,7 +64,7 @@ char	*get_next_line(int fd)
 
 int main(void)
 {
-	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
+	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
 
 	get_next_line(fd);
 	close(fd);
