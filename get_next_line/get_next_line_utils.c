@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/24 16:37:57 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:09:21 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	int		x;
-	int		y;
-	char	chr;
-	char	*ptr;
-
-	x = 0;
-	y = 0;
-	chr = c;
-	ptr = (void *)s;
-	while (ptr[y] != '\0')
-	{
-		y++;
-	}
-	while (x <= y)
-	{
-		if (ptr[x] == chr)
-			return (&ptr[x]);
-		x++;
-	}
-	return (NULL);
-}
