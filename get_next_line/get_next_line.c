@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/26 13:10:01 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/29 13:41:51 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	str_size(char *buffer, int new_line_pos)
 
 	x = new_line_pos - 1;
 	size = 0;
-	while (buffer[x] != '\n' && buffer[x] != '\0')
+	while (buffer[x] != '\n' && x >= 0)
 	{
 		size++;
 		x--;
@@ -31,7 +31,7 @@ int	find_new_line(char *buffer)
 {
 	static int	a;
 
-	while (buffer[a] == '\n' && buffer[a] != '\0')
+	if (a != 0 && buffer[a] != '\0')
 		a++;
 	while (buffer[a] != '\n' && buffer[a] != '\0')
 		a++;
@@ -42,29 +42,39 @@ char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		buffer[BUFFER_SIZE];
+	int			buff_pos;
 	int			new_line_pos;
-	int			size;
+	int			x;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, buffer, BUFFER_SIZE) < 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
+	read(fd, buffer, BUFFER_SIZE);
 	new_line_pos = find_new_line(buffer);
-	size = str_size(buffer, new_line_pos);
-	str = malloc(sizeof(char) * (size + 1));
-	str[size + 1] = '\0';
-	while (size > 0)
+	str = malloc(sizeof(char) * (str_size(buffer, new_line_pos)) + 1);
+	free (str);
+	buff_pos = new_line_pos - str_size(buffer, new_line_pos);
+	x = 0;
+	while (x < str_size(buffer, new_line_pos))
 	{
-		str[size] = buffer[new_line_pos];
-		size--;
-		new_line_pos--;
+		str[x] = buffer[buff_pos];
+		x++;
+		buff_pos++;
 	}
-	printf("%s", str);
+	str[x] = '\0';
+	printf("%s\n", str);
 	return (str);
 }
 
 int main(void)
 {
-	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
+	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
 
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
 	get_next_line(fd);
 	close(fd);
 }
