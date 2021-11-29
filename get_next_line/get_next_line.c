@@ -6,20 +6,34 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/25 17:04:08 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:10:01 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+int	str_size(char *buffer, int new_line_pos)
+{
+	int	size;
+	int	x;
+
+	x = new_line_pos - 1;
+	size = 0;
+	while (buffer[x] != '\n' && buffer[x] != '\0')
+	{
+		size++;
+		x--;
+	}
+	return (size);
+}
+
 int	find_new_line(char *buffer)
 {
 	static int	a;
 
-	a = 0;
-	while (buffer[a] == '\n')
+	while (buffer[a] == '\n' && buffer[a] != '\0')
 		a++;
-	while (buffer[a] != '\n')
+	while (buffer[a] != '\n' && buffer[a] != '\0')
 		a++;
 	return (a);
 }
@@ -28,32 +42,20 @@ char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		buffer[BUFFER_SIZE];
-	static int	i;
-	int			x;
+	int			new_line_pos;
+	int			size;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, buffer, BUFFER_SIZE) < 1)
 		return (NULL);
-	x = 0;
-	i = 0;
-	str = malloc(sizeof(char) * BUFFER_SIZE);
-	if (str[0] == '\0')
+	new_line_pos = find_new_line(buffer);
+	size = str_size(buffer, new_line_pos);
+	str = malloc(sizeof(char) * (size + 1));
+	str[size + 1] = '\0';
+	while (size > 0)
 	{
-		while (i < find_new_line(buffer))
-		{
-			str[x] = buffer[i];
-			i++;
-			x++;
-		}
-	}
-	else
-	{
-		free (str);
-		while (i < find_new_line(buffer))
-		{
-			str[x] = buffer[i];
-			i++;
-			x++;
-		}
+		str[size] = buffer[new_line_pos];
+		size--;
+		new_line_pos--;
 	}
 	printf("%s", str);
 	return (str);
