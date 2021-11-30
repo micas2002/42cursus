@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/30 12:25:05 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:03:37 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	find_new_line(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	char		*str;
 	char		buffer[BUFFER_SIZE];
 	int			buff_pos;
 	int			new_line_pos;
@@ -63,7 +63,6 @@ char	*get_next_line(int fd)
 	if (check_next_str(buffer, new_line_pos) == 1)
 		return (NULL);
 	str = malloc(sizeof(char) * (str_size(buffer, new_line_pos)) + 1);
-	free (str);
 	if (!str)
 		return (NULL);
 	buff_pos = new_line_pos - str_size(buffer, new_line_pos);
@@ -77,11 +76,8 @@ char	*get_next_line(int fd)
 
 int main(void)
 {
-	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
+	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
 
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
