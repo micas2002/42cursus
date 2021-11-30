@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/29 17:09:01 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/11/30 12:25:05 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	find_new_line(char *buffer)
 		a++;
 	while (buffer[a] != '\n' && buffer[a] != '\0')
 		a++;
-	return (a);
+	if (a < BUFFER_SIZE)
+		return (a);
+	else
+		return (BUFFER_SIZE);
 }
 
 char	*get_next_line(int fd)
@@ -60,15 +63,31 @@ char	*get_next_line(int fd)
 	if (check_next_str(buffer, new_line_pos) == 1)
 		return (NULL);
 	str = malloc(sizeof(char) * (str_size(buffer, new_line_pos)) + 1);
+	free (str);
 	if (!str)
 		return (NULL);
-	free (str);
 	buff_pos = new_line_pos - str_size(buffer, new_line_pos);
 	x = 0;
 	while (x < str_size(buffer, new_line_pos))
-	{
 		str[x++] = buffer[buff_pos++];
-	}
 	str[x] = '\0';
+	printf("%s\n", str);
 	return (str);
+}
+
+int main(void)
+{
+	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
+
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	close(fd);
 }
