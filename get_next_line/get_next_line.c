@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/11/30 17:03:37 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:59:56 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,27 @@ int	find_new_line(char *buffer)
 		a++;
 	while (buffer[a] != '\n' && buffer[a] != '\0')
 		a++;
-	if (a < BUFFER_SIZE)
-		return (a);
-	else
-		return (BUFFER_SIZE);
+	return (a);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*str;
+	static char		*str;
 	char		buffer[BUFFER_SIZE];
 	int			buff_pos;
 	int			new_line_pos;
 	int			x;
+	static int	y;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	read(fd, buffer, BUFFER_SIZE);
+	if (y == 0)
+		read(fd, buffer, BUFFER_SIZE);
+	y++;
 	new_line_pos = find_new_line(buffer);
 	if (check_next_str(buffer, new_line_pos) == 1)
 		return (NULL);
+	free (str);
 	str = malloc(sizeof(char) * (str_size(buffer, new_line_pos)) + 1);
 	if (!str)
 		return (NULL);
