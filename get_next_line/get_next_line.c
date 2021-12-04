@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/03 13:43:23 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/04 17:23:10 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,29 @@ char	*read_buffer(int fd)
 	char	*temp;
 	char	*str;
 
-	temp = NULL;
-	while (read(fd, buffer, BUFFER_SIZE) > 0 && ft_strchr(buffer, 10) == NULL)
-		temp = ft_strjoin(temp, buffer);
+	temp = malloc(sizeof(char) * 1);
+	while (read(fd, buffer, BUFFER_SIZE) > 0)
+	{
+		if (ft_strchr(buffer, 10) == 1)
+		{
+			temp = ft_strjoin(temp, buffer);
+			break ;
+		}
+		else
+			temp = ft_strjoin(temp, buffer);
+	}
 	str = temp;
+	return (str);
+}
+
+char	*ft_loop(char *str, char *temp, int new_line_pos, int buff_pos)
+{
+	int		x;
+
+	x = 0;
+	while (x < str_size(temp, new_line_pos) && temp[buff_pos] != '\n')
+		str[x++] = temp[buff_pos++];
+	str[x] = '\0';
 	return (str);
 }
 
@@ -64,7 +83,6 @@ char	*get_next_line(int fd)
 	int				buff_pos;
 	int				new_line_pos;
 	static int		loop;
-	int				x;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
@@ -79,17 +97,14 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	buff_pos = new_line_pos - str_size(temp, new_line_pos);
-	x = 0;
-	while (x < str_size(temp, new_line_pos) && temp[buff_pos] != '\n')
-		str[x++] = temp[buff_pos++];
-	str[x] = '\0';
+	str = ft_loop(str, temp, new_line_pos, buff_pos);
 	printf("%s\n", str);
 	return (str);
 }
 
 int main(void)
 {
-	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
+	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
 
 	get_next_line(fd);
 	get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:10 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/03 12:51:00 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/04 16:49:19 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 // PROTOTYPES
 
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
+int		ft_strchr(const char *s, int c);
+int		find_new_line_temp(char *buffer);
 
 #endif

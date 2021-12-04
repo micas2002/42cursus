@@ -6,13 +6,31 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/03 12:50:30 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/04 16:49:24 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+int	find_new_line_temp(char *buffer)
+{
+	int	a;
+
+	a = 0;
+	if (a != 0 && buffer[a] != '\0')
+	{
+		if (buffer[a + 1] == '\0')
+			return (0);
+		a++;
+	}
+	else if (a != 0 && buffer[a] == '\0')
+		return (0);
+	while (buffer[a] != '\n' && buffer[a] != '\0')
+		a++;
+	return (a);
+}
+
+int	ft_strchr(const char *s, int c)
 {
 	int		x;
 	int		y;
@@ -30,12 +48,10 @@ char	*ft_strchr(const char *s, int c)
 	while (x <= y)
 	{
 		if (ptr[x] == chr)
-		{
-			return (&ptr[x]);
-		}
+			return (1);
 		x++;
 	}
-	return (NULL);
+	return (0);
 }
 
 size_t	ft_strlen(const char *s)
