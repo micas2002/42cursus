@@ -6,52 +6,47 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/04 16:49:24 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/06 13:52:00 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	find_new_line_temp(char *buffer)
+static char	ft_strcpy(char *dst, const char *src)
 {
-	int	a;
-
-	a = 0;
-	if (a != 0 && buffer[a] != '\0')
-	{
-		if (buffer[a + 1] == '\0')
-			return (0);
-		a++;
-	}
-	else if (a != 0 && buffer[a] == '\0')
-		return (0);
-	while (buffer[a] != '\n' && buffer[a] != '\0')
-		a++;
-	return (a);
-}
-
-int	ft_strchr(const char *s, int c)
-{
-	int		x;
-	int		y;
-	char	chr;
-	char	*ptr;
+	int			x;
+	static int	y;
 
 	x = 0;
-	y = 0;
-	chr = c;
-	ptr = (void *)s;
-	while (ptr[y] != '\0')
+	while (src[y] != '\0')
 	{
-		y++;
+		if (src[y] == '\n')
+		{
+			dst[x] = src[y];
+			x++;
+			y++;
+			break ;
+		}
+		else
+		{
+			dst[x] = src[y];
+			x++;
+			y++;
+		}
 	}
-	while (x <= y)
-	{
-		if (ptr[x] == chr)
-			return (1);
-		x++;
-	}
-	return (0);
+	dst[x] = '\0';
+	return (*dst);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*dest;
+
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!dest)
+		return (NULL);
+	ft_strcpy(dest, s1);
+	return (dest);
 }
 
 size_t	ft_strlen(const char *s)
