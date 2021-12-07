@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/06 13:56:08 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/07 12:52:28 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*read_buffer(int fd, char *temp)
 	char	*buffer;
 	char	*str;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = malloc(sizeof(char) * BUFFER_SIZE);
 	while (read(fd, buffer, BUFFER_SIZE) > 0)
 	{
 		if (ft_strchr(buffer, '\n') == 1)
@@ -70,6 +70,12 @@ char	*read_buffer(int fd, char *temp)
 		else
 			temp = ft_strjoin(temp, buffer);
 	}
+	if (temp[0] == '\0')
+	{
+		free (buffer);
+		return (NULL);
+	}
+	free (buffer);
 	str = temp;
 	return (str);
 }
@@ -85,14 +91,31 @@ char	*get_next_line(int fd)
 	if (!temp)
 		temp = malloc(sizeof(char) * 1);
 	temp = read_buffer(fd, temp);
+	if (!temp)
+	{
+		free (temp);
+		return (temp);
+	}
 	new_line_pos = find_new_line(temp);
-	if (new_line_pos == 0)
-		return (NULL);
 	str = malloc(sizeof(char) * (new_line_pos + 1));
 	if (!str)
 		return (NULL);
 	free (str);
-	str = ft_strdup(temp);
+	str = ft_strdup(temp, str);
 	printf("%s\n", str);
 	return (str);
+}
+
+int main(void)
+{
+	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
+
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	close(fd);
 }
