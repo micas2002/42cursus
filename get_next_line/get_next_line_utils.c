@@ -6,35 +6,41 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/07 12:54:25 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:08:48 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(const char *s1, char *str)
+char	*ft_strcpy(char *dst, const char *src)
 {
 	int			x;
 	static int	y;
 
 	x = 0;
-	while (s1[y] != '\0')
+	while (src[y] != '\0')
 	{
-		if (s1[y] == '\n')
+		if (src[y] == '\n')
 		{
-			str[x] = s1[y];
+			dst[x] = src[y];
 			x++;
 			y++;
 			break ;
 		}
 		else
 		{
-			str[x] = s1[y];
+			dst[x] = src[y];
 			x++;
 			y++;
 		}
 	}
-	str[x] = '\0';
+	dst[x] = '\0';
+	return (dst);
+}
+
+char	*ft_strdup(const char *s1, char *str)
+{
+	ft_strcpy(str, s1);
 	return (str);
 }
 
