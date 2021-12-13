@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:11:07 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/10 16:59:24 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:15:58 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ size_t	ft_strlen(const char *s)
 	return (x);
 }
 
-static char	join(char *str, const char *s1, const char *s2)
+static char	*join(char *str, const char *s1, const char *s2)
 {
 	int	x;
 	int	y;
@@ -67,7 +67,7 @@ static char	join(char *str, const char *s1, const char *s2)
 		y++;
 	}
 	str[x] = '\0';
-	return (*str);
+	return (str);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
