@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 16:11:10 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/13 15:01:02 by mibernar         ###   ########.fr       */
+/*   Created: 2021/12/14 14:46:09 by mibernar          #+#    #+#             */
+/*   Updated: 2021/12/15 16:57:38 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <stddef.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <string.h> 
 
 // PROTOTYPES
@@ -26,6 +26,7 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		find_new_line_temp(char *buffer);
 char	*ft_strdup(const char *s1, char *str);
+char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(const char *s);
 
 #endif

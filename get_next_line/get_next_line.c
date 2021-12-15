@@ -5,99 +5,112 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 16:10:19 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/13 17:57:06 by mibernar         ###   ########.fr       */
+/*   Created: 2021/12/14 14:44:57 by mibernar          #+#    #+#             */
+/*   Updated: 2021/12/15 17:20:03 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	find_new_line(char *buffer)
+char	*ft_read(int fd, char *temp)
 {
-	int		a;
+	char	buffer[BUFFER_SIZE + 1];
+	int		x;
 
-	a = 0;
-	if (a != 0 && buffer[a] != '\0')
+	x = BUFFER_SIZE;
+	while (!ft_strchr(temp, 10) && x > 0)
 	{
-		if (buffer[a + 1] == '\0')
-			return (0);
-		a++;
+		x = read(fd, buffer, BUFFER_SIZE);
+		if (x < 1)
+			return (NULL);
+		buffer[x] = '\0';
+		temp = ft_strjoin(temp, buffer);
 	}
-	else if (a != 0 && buffer[a] == '\0')
-		return (0);
-	while (buffer[a] != '\0' && buffer[a] != '\n')
-		a++;
-	return (a);
+	return (temp);
 }
 
-int	ft_strchr(const char *s, int c)
+int	line_size(char *temp)
 {
-	size_t		x;
-	size_t		y;
-	char		chr;
-	char		*ptr;
+	int	x;
 
 	x = 0;
-	y = 0;
-	chr = c;
-	ptr = (void *)s;
-	while (ptr[y])
-		y++;
-	while (x <= y)
-	{
-		if (ptr[x] == chr)
-			return (1);
+	while (temp && temp[x] != 10)
 		x++;
-	}
-	return (0);
+	return (x);
 }
 
-char	*read_buffer(int fd, char *temp)
+char	*next_line(char *temp)
 {
-	char	*buffer;
+	char	*next_line;
+	int		x;
+	int		y;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE) + 1);
-	buffer[BUFFER_SIZE + 1] = '\0';
-	while (read(fd, buffer, BUFFER_SIZE) > 0)
+	x = line_size(temp);
+	next_line = malloc(sizeof(char) * (x + 1));
+	y = 0;
+	if (!temp)
+		return (NULL);
+	if (temp[x + 1] == '\0')
 	{
-		if (ft_strchr(buffer, '\n') == 1)
-		{
-			temp = ft_strjoin(temp, buffer);
-			return (temp);
-		}
-		else
-			temp = ft_strjoin(temp, buffer);
+		free (temp);
+		return (NULL);
 	}
-	free (buffer);
-	return (temp);
+	while (temp && temp[x] != 10)
+	{
+		next_line[y] = temp[x];
+		x++;
+		y++;
+	}
+	if (temp[x] == 10)
+	{
+		next_line[y] = temp[x];
+		x++;
+		y++;
+	}
+	next_line[x] = '\0';
+	return (next_line);
+}
+
+char	*write_line(char *temp)
+{
+	char	*line;
+	int		x;
+
+	if (!temp)
+		return (NULL);
+	if (temp[0] == '\0')
+		return (NULL);
+	x = line_size(temp);
+	line = malloc(sizeof(char) * (x + 1));
+	if (!line)
+		return (NULL);
+	x = 0;
+	while (temp && temp[x] != 10)
+	{
+		line[x] = temp[x];
+		x++;
+	}
+	line[x] = temp[x];
+	line[x + 1] = '\0';
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*str;
 	static char	*temp;
-	static int	loop;
-	int			new_line_pos;
+	char		*str;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	if (!temp && loop == 0)
+	temp = ft_read(fd, temp);
+	str = write_line(temp);
+	temp = next_line(temp);
+	if (!str && !temp)
 	{
-		temp = malloc(sizeof(char) * 1);
-		if (!temp)
-			return (NULL);
+		free (str);
+		free (temp);
+		return (NULL);
 	}
-	temp = read_buffer(fd, temp);
-	if (temp[0] == '\0')
-		return (NULL);
-	new_line_pos = find_new_line(temp);
-	if (new_line_pos == 0 && temp[0] != '\n')
-		return (NULL);
-	loop++;
-	str = malloc(sizeof(char) * (new_line_pos + 1));
-	if (!str)
-		return (NULL);
-	str = ft_strdup(temp, str);
 	printf("%s", str);
 	return (str);
 }
