@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:44:57 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/15 17:20:03 by mibernar         ###   ########.fr       */
+/*   Updated: 2021/12/17 12:56:38 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ char	*ft_read(int fd, char *temp)
 	{
 		x = read(fd, buffer, BUFFER_SIZE);
 		if (x < 1)
-			return (NULL);
+		{
+			if (!temp)
+				return (NULL);
+			return (temp);
+		}
 		buffer[x] = '\0';
 		temp = ft_strjoin(temp, buffer);
 	}
@@ -34,7 +38,7 @@ int	line_size(char *temp)
 	int	x;
 
 	x = 0;
-	while (temp && temp[x] != 10)
+	while (temp[x] != '\0' && temp[x] != 10)
 		x++;
 	return (x);
 }
@@ -45,11 +49,11 @@ char	*next_line(char *temp)
 	int		x;
 	int		y;
 
-	x = line_size(temp);
-	next_line = malloc(sizeof(char) * (x + 1));
-	y = 0;
 	if (!temp)
 		return (NULL);
+	x = line_size(temp);
+	next_line = malloc(sizeof(char) * x);
+	y = 0;
 	if (temp[x + 1] == '\0')
 	{
 		free (temp);
@@ -68,31 +72,36 @@ char	*next_line(char *temp)
 		y++;
 	}
 	next_line[x] = '\0';
-	return (next_line);
+	temp = next_line;
+	free (next_line);
+	return (temp);
 }
 
 char	*write_line(char *temp)
 {
 	char	*line;
 	int		x;
+	int		y;
 
 	if (!temp)
 		return (NULL);
 	if (temp[0] == '\0')
 		return (NULL);
 	x = line_size(temp);
-	line = malloc(sizeof(char) * (x + 1));
+	line = malloc(sizeof(char) * x);
 	if (!line)
 		return (NULL);
-	x = 0;
-	while (temp && temp[x] != 10)
+	y = 0;
+	while (y < x && temp[y] != 10)
 	{
-		line[x] = temp[x];
-		x++;
+		line[y] = temp[y];
+		y++;
 	}
-	line[x] = temp[x];
-	line[x + 1] = '\0';
-	return (line);
+	line[y] = temp[y];
+	line[y + 1] = '\0';
+	temp = line;
+	free (line);
+	return (temp);
 }
 
 char	*get_next_line(int fd)
@@ -111,6 +120,25 @@ char	*get_next_line(int fd)
 		free (temp);
 		return (NULL);
 	}
-	printf("%s", str);
 	return (str);
+}
+int main(void)
+{
+	int fd = open("/Users/mibernar/Desktop/get_next_line_test.txt", O_RDONLY);
+
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	close(fd);
 }
