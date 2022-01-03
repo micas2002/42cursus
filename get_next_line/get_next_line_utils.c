@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:57:05 by mibernar          #+#    #+#             */
-/*   Updated: 2021/12/17 12:55:44 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/03 15:42:10 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ size_t	ft_strlen(const char *s)
 	return (x);
 }
 
-char	*ft_strchr(char *s, int c)
+int	ft_strchr(char *temp, int c)
 {
 	int	i;
 
+	if (!temp)
+		return (0);
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	while (s[i])
+	while (temp[i] != '\0')
 	{
-		if (s[i] == (unsigned char)c)
-			return (&s[i]);
+		if (temp[i] == c)
+			return (1);
 		i++;
 	}
-	if (s[i] == 0 && c != 0)
-		return (NULL);
-	return (&s[i]);
+	if (temp[i] == 0 && c != 0)
+		return (0);
+	return (0);
 }
 
 static char	*join(char *str, char *s1, char *s2)
