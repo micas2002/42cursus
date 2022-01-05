@@ -6,38 +6,38 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:57:05 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/03 15:42:10 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/05 13:27:39 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	int	x;
 
 	x = 0;
-	if (s == NULL)
+	if (!s)
 		return (0);
 	while (s[x] != '\0')
 		x++;
 	return (x);
 }
 
-int	ft_strchr(char *temp, int c)
+int	ft_strchr(char *str_temp, int c)
 {
 	int	i;
 
-	if (!temp)
+	if (!str_temp)
 		return (0);
 	i = 0;
-	while (temp[i] != '\0')
+	while (str_temp[i] != '\0')
 	{
-		if (temp[i] == c)
+		if (str_temp[i] == c)
 			return (1);
 		i++;
 	}
-	if (temp[i] == 0 && c != 0)
+	if (str_temp[i] == 0 && c != 0)
 		return (0);
 	return (0);
 }

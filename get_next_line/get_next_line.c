@@ -6,31 +6,36 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:44:57 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/03 15:42:42 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/05 15:42:58 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd, char *temp)
+char	*ft_read(int fd)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
+	char	*str_temp;
 	int		x;
 
 	x = BUFFER_SIZE;
-	while (ft_strchr(temp, 10) == 0 && x > 0)
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	str_temp = '\0';
+	while (ft_strchr(str_temp, 10) == 0 && x > 0)
 	{
 		x = read(fd, buffer, BUFFER_SIZE);
 		if (x < 1)
 		{
-			if (!temp)
+			if (x < 0)
 				return (NULL);
-			return (temp);
+			else if (!str_temp)
+				return (NULL);
+			return (str_temp);
 		}
 		buffer[x] = '\0';
-		temp = ft_strjoin(temp, buffer);
+		str_temp = ft_strjoin(str_temp, buffer);
 	}
-	return (temp);
+	return (str_temp);
 }
 
 int	line_size(char *temp)
@@ -55,10 +60,7 @@ char	*next_line(char *temp)
 	if (!temp)
 		return (NULL);
 	if (ft_strchr(temp, 10) == 0)
-	{
-		free (temp);
 		return (NULL);
-	}
 	x = 0;
 	while (temp[x] != 10)
 		x++;
@@ -72,6 +74,8 @@ char	*next_line(char *temp)
 		next_line[x] = temp[x];
 		x++;
 	}
+	temp = next_line;
+	free (next_line);
 	return (next_line);
 }
 
@@ -96,8 +100,11 @@ char	*write_line(char *temp)
 		y++;
 	}
 	if (temp[y] == 10)
+	{
 		line[y] = 10;
-	line[y + 1] = '\0';
+		y++;
+	}
+	line[y] = '\0';
 	return (line);
 }
 
@@ -108,7 +115,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	temp = ft_read(fd, temp);
+	temp = ft_read(fd);
 	str = write_line(temp);
 	temp = next_line(temp);
 	if (!str && !temp)
