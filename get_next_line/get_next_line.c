@@ -6,36 +6,40 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:44:57 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/05 15:42:58 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/06 12:31:56 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd)
+char	*ft_read(int fd, char *temp)
 {
 	char	*buffer;
-	char	*str_temp;
 	int		x;
 
 	x = BUFFER_SIZE;
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	str_temp = '\0';
-	while (ft_strchr(str_temp, 10) == 0 && x > 0)
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE) + 1);
+	while (ft_strchr(temp, 10) == 0 && x > 0)
 	{
 		x = read(fd, buffer, BUFFER_SIZE);
 		if (x < 1)
 		{
 			if (x < 0)
+			{
+				free (buffer);
 				return (NULL);
-			else if (!str_temp)
+			}
+			else if (!temp)
+			{
+				free (buffer);
 				return (NULL);
-			return (str_temp);
+			}
 		}
 		buffer[x] = '\0';
-		str_temp = ft_strjoin(str_temp, buffer);
+		temp = ft_strjoin(temp, buffer);
 	}
-	return (str_temp);
+	free (buffer);
+	return (temp);
 }
 
 int	line_size(char *temp)
@@ -74,8 +78,6 @@ char	*next_line(char *temp)
 		next_line[x] = temp[x];
 		x++;
 	}
-	temp = next_line;
-	free (next_line);
 	return (next_line);
 }
 
@@ -86,9 +88,10 @@ char	*write_line(char *temp)
 	int		y;
 
 	if (!temp)
+	{
+		free (temp);
 		return (NULL);
-	if (temp[0] == '\0')
-		return (NULL);
+	}
 	x = line_size(temp);
 	line = malloc(sizeof(char) * (x + 1));
 	if (!line)
@@ -115,7 +118,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	temp = ft_read(fd);
+	temp = ft_read(fd, temp);
 	str = write_line(temp);
 	temp = next_line(temp);
 	if (!str && !temp)
@@ -126,7 +129,6 @@ char	*get_next_line(int fd)
 	}
 	return (str);
 }
-
 int main(void)
 {
 	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);

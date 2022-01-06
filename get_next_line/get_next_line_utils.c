@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:57:05 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/05 13:27:39 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/06 12:29:20 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,34 @@ size_t	ft_strlen(char *s)
 	int	x;
 
 	x = 0;
-	if (!s)
+	if (s == NULL)
 		return (0);
 	while (s[x] != '\0')
 		x++;
 	return (x);
 }
 
-int	ft_strchr(char *str_temp, int c)
+int	ft_strchr(char *temp, int c)
 {
 	int	i;
 
-	if (!str_temp)
-		return (0);
 	i = 0;
-	while (str_temp[i] != '\0')
+	if (temp == NULL)
 	{
-		if (str_temp[i] == c)
+		return (0);
+	}
+	while (temp[i] != '\0')
+	{
+		if (temp[i] == c)
+		{
 			return (1);
+		}
 		i++;
 	}
-	if (str_temp[i] == 0 && c != 0)
+	if (temp[i] == 0 && c != 0)
+	{
 		return (0);
+	}
 	return (0);
 }
 
