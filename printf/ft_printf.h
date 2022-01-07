@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:04:18 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/06 16:26:42 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/07 11:16:16 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
+# include "libft.h"
 
 // PROTOTYPES
 
-int	ft_printf(const char *, ...);
+int	ft_printf(const char *format, ...);
 
 #endif
