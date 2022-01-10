@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_c.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/06 16:04:18 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/10 16:56:29 by mibernar         ###   ########.fr       */
+/*   Created: 2022/01/10 12:35:19 by mibernar          #+#    #+#             */
+/*   Updated: 2022/01/10 12:42:40 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stddef.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-# include <stdarg.h>
+char	ft_printf_c(int arg)
+{
+	char	a;
 
-// PROTOTYPES
-
-int	ft_printf(const char *format, ...);
-
-#endif
+	a = arg + 0;
+	return (a);
+}

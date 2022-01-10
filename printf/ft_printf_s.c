@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prinf.c                                         :+:      :+:    :+:   */
+/*   ft_printf_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/07 12:22:47 by mibernar         ###   ########.fr       */
+/*   Created: 2022/01/10 12:50:08 by mibernar          #+#    #+#             */
+/*   Updated: 2022/01/10 17:18:22 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_printf(const char *format, ...)
+char	ft_printf_s(char *args)
 {
-	va_list	args;
+	char	*str;
+	int		x;
+	int		size;
 
-	va_start(args, format);
-
-	va_end(args);
-}
-
-int	main(void)
-{
-	ft_printf("%c", 'a');
-	return (0);
+	size = ft_strlen(args);
+	str = malloc(sizeof(char) * si)
+	x = 0;
+	while (args[x] != '\0')
+	{
+		str[x] = args[x];
+		x++;
+	}
+	str[x] = args[x];
+	return (str);
 }
