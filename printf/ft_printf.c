@@ -6,11 +6,37 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/10 18:00:45 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/11 16:12:54 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
+
+int	open_format_type(char format_type, va_list args)
+{
+	int		size;
+
+	if (format_type == "c")
+		size = ft_printf_c(args);
+	else if (format_type == "s")
+		size = ft_printf_s(args);
+	else if (format_type == "p")
+		size = ft_printf_p(args);
+	else if (format_type == "d")
+		size = ft_printf_d(args);
+	else if (format_type == "i")
+		size = ft_printf_i(args);
+	else if (format_type == "u")
+		size = ft_printf_u(args);
+	else if (format_type == "x")
+		size = ft_printf_x(args);
+	else if (format_type == "X")
+		size = ft_printf_X(args);
+	else if (format_type == "%")
+		size = ft_printf_percent(args);
+	return (size);
+}
 
 int	check_format(char *format, int x)
 {
@@ -18,27 +44,28 @@ int	check_format(char *format, int x)
 		|| format[x] == "d" || format[x] == "i" || format[x] == "u"
 		|| format[x] == "x" || format[x] == "X" || format[x] == "%")
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 int	count_size(char *format, va_list args)
 {
-	int	size;
-	int	x;
+	int		size;
+	int		x;
+	char	format_type;
 
 	x = 0;
 	size = 0;
-	if (!format)
-		return (-1);
 	while (format)
 	{
-		if (format[x] == '%' && format[x + 1])
+		if (format[x] == '%' || format[x] == " " && format[x + 1])
 			x++;
-		else if (check_format(format, x) == 1)
+		if (check_format(format, x) == 1)
 		{
-			
+			format_type = format[x];
+			size += open_format_type(format_type, args);
 		}
+		x++;
+		args++;
 	}
 	return (size);
 }
@@ -48,10 +75,12 @@ int	ft_printf(const char *format, ...)
 	int		arg_size;
 	va_list	args;
 
-	arg_size = 0;
+	if (!format)
+		return (-1);
 	va_start(args, format);
-	count_size(format, args);
+	arg_size = count_size(format, args);
 	va_end(args);
+	return (arg_size);
 }
 
 int	main(void)

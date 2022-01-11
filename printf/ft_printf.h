@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:04:18 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/10 16:56:29 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/11 15:25:33 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 // PROTOTYPES
 
 int	ft_printf(const char *format, ...);
+int	ft_printf_c(int arg);
 
 #endif
