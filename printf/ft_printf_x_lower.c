@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_i.c                                      :+:      :+:    :+:   */
+/*   ft_printf_x_lower.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 13:05:12 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/14 12:22:43 by mibernar         ###   ########.fr       */
+/*   Created: 2022/01/12 13:04:31 by mibernar          #+#    #+#             */
+/*   Updated: 2022/01/14 16:58:16 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf_i(va_list args)
+int	ft_printf_x_lower(va_list args)
 {
+	int		save;
+	int		quocient;
+	int		hexa_num;
 	char	*str;
-	int		x;
+	char	*temp;
 
-	str = ft_itoa(va_arg(args, int));
-	x = 0;
-	while (str)
+	save = va_arg(args, int);
+	quocient = save / 16;
+	while (quocient != 0)
 	{
-		write(1, str[x], 1);
-		x++;
+		hexa_num = quocient % 16;
+		quocient = quocient / 16;
 	}
-	write (1, '\0', 1);
-	free (str);
-	return (x);
+	temp = ft_itoa(hexa_num);
+	write (1, "0x", 2);
+	write (1, str, 1);
+	save = ft_strlen(str) + 2;
+	return (save);
 }

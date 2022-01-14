@@ -6,11 +6,12 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 13:33:51 by mibernar          #+#    #+#              #
-#    Updated: 2022/01/10 15:57:41 by mibernar         ###   ########.fr        #
+#    Updated: 2022/01/13 16:18:57 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_printf.c ft_printf_c.c ft_printf_s.c ft_printf_i.c
+
 OBJS = $(SRCS:.c=.o)
 
 BONUS =	 

@@ -6,24 +6,25 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:50:08 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/10 17:18:22 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/14 12:51:56 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ft_printf_s(char *args)
-{
-	char	*str;
-	int		x;
-	int		size;
+#include "ft_printf.h"
 
-	size = ft_strlen(args);
-	str = malloc(sizeof(char) * si)
+int	ft_printf_s(va_list args)
+{
+	char	*temp;
+	int		x;
+
+	temp = va_arg(args, char *);
 	x = 0;
-	while (args[x] != '\0')
+	while (temp[x] != '\0')
 	{
-		str[x] = args[x];
+		write(1, temp[x], 1);
 		x++;
 	}
-	str[x] = args[x];
-	return (str);
+	write (1, '\0', 1);
+	free (temp);
+	return (x);
 }
