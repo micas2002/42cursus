@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/14 15:49:51 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/18 16:52:25 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	open_format_type(char format_type, va_list args)
 {
 	int		size;
 
-	if (format_type == 'c')
-		size = ft_printf_c(args);
+	// if (format_type == 'c')
+	// 	size = ft_printf_c(args);
 	else if (format_type == 'd')
 		size = ft_printf_d(args);
 	else if (format_type == 'i')
@@ -26,14 +26,14 @@ int	open_format_type(char format_type, va_list args)
 		size = ft_printf_p(args);
 	else if (format_type == '%')
 		size = ft_printf_percent(args);
-	else if (format_type == 's')
-		size = ft_printf_s(args);
-	else if (format_type == 'u')
-		size = ft_printf_u(args);
-	else if (format_type == 'x')
-		size = ft_printf_x_lower(args);
-	else if (format_type == 'X')
-		size = ft_printf_x_upper(args);
+	// else if (format_type == 's')
+	// 	size = ft_printf_s(args);
+	// else if (format_type == 'u')
+	// 	size = ft_printf_u(args);
+	// else if (format_type == 'x')
+	// 	size = ft_printf_x_lower(args);
+	// else if (format_type == 'X')
+	// 	size = ft_printf_x_upper(args);
 	return (size);
 }
 

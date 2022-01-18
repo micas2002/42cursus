@@ -6,26 +6,11 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:31 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/17 17:21:39 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/18 15:10:53 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_lower(char *hex_num)
-{
-	int	x;
-
-	x = 0;
-	while (hex_num[x] != '\0')
-	{
-		if (hex_num[x] > 64 && hex_num[x] < 91)
-			hex_num[x] = hex_num[x] + 32;
-		x++;
-	}
-	hex_num[x] = '\0';
-	return (hex_num);
-}
 
 char	*rev_str(char *hex_num)
 {
@@ -63,12 +48,11 @@ int	ft_printf_x_lower(va_list args)
 		if (remainder < 10)
 			hex_num[j++] = 48 + remainder;
 		else
-			hex_num[j++] = 55 + remainder;
+			hex_num[j++] = 87 + remainder;
 		quotient = quotient / 16;
 	}
 	hex_num[j] = '\0';
 	hex_num = rev_str(hex_num);
-	hex_num = ft_lower(hex_num);
 	i = ft_strlen(hex_num);
 	write (1, hex_num, i);
 	free (hex_num);

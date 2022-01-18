@@ -6,26 +6,11 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:33 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/17 17:21:20 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/18 15:11:07 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_upper(char *hex_num)
-{
-	int	x;
-
-	x = 0;
-	while (hex_num[x] != '\0')
-	{
-		if (hex_num[x] > 96 && hex_num[x] < 123)
-			hex_num[x] = hex_num[x] - 32;
-		x++;
-	}
-	hex_num[x] = '\0';
-	return (hex_num);
-}
 
 char	*rev_str(char *hex_num)
 {
