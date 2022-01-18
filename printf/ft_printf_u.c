@@ -73,7 +73,6 @@ int	ft_printf_u(va_list args)
 	char			*str;
 
 	a = va_arg(args, unsigned int);
-	printf("%u\n", a);
 	if (a < 0)
 		a = 4294967295 + a;
 	str = ft_unsigned_itoa(a);
