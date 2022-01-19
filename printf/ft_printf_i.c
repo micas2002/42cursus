@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:05:12 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/14 12:22:43 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:38:05 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,11 @@
 int	ft_printf_i(va_list args)
 {
 	char	*str;
-	int		x;
+	int		size;
 
 	str = ft_itoa(va_arg(args, int));
-	x = 0;
-	while (str)
-	{
-		write(1, str[x], 1);
-		x++;
-	}
-	write (1, '\0', 1);
+	size = strlen(str);
+	write(1, str, size);
 	free (str);
-	return (x);
+	return (size);
 }

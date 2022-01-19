@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/18 16:52:25 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:01:36 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int	open_format_type(char format_type, va_list args)
 	// 	size = ft_printf_c(args);
 	else if (format_type == 'd')
 		size = ft_printf_d(args);
-	else if (format_type == 'i')
-		size = ft_printf_i(args);
+	// else if (format_type == 'i')
+	// 	size = ft_printf_i(args);
 	else if (format_type == 'p')
 		size = ft_printf_p(args);
-	else if (format_type == '%')
-		size = ft_printf_percent(args);
 	// else if (format_type == 's')
 	// 	size = ft_printf_s(args);
 	// else if (format_type == 'u')
@@ -41,7 +39,7 @@ int	check_format(char *format, int x)
 {
 	if (format[x] == 'c' || format[x] == 's' || format[x] == 'p'
 		|| format[x] == 'd' || format[x] == 'i' || format[x] == 'u'
-		|| format[x] == 'x' || format[x] == 'X' || format[x] == '%')
+		|| format[x] == 'x' || format[x] == 'X')
 		return (1);
 	return (0);
 }
@@ -52,8 +50,16 @@ int	treat_format(char *format, int x)
 	{
 		if (format[x] == '%' && format[x + 1])
 		{
-			x++;
-			break ;
+			if (format[x++] == '%')
+			{
+				write (1, "%", 1);
+				treat_format(format, (x + 2));
+			}
+			else
+			{
+				x++;
+				break ;
+			}		
 		}
 		ft_putchar_fd(format[x], 1);
 		x++;
