@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/19 16:01:36 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/21 16:06:56 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	open_format_type(char format_type, va_list args)
 
 	// if (format_type == 'c')
 	// 	size = ft_printf_c(args);
-	else if (format_type == 'd')
-		size = ft_printf_d(args);
+	// else if (format_type == 'd')
+	// 	size = ft_printf_d(args);
 	// else if (format_type == 'i')
 	// 	size = ft_printf_i(args);
 	else if (format_type == 'p')

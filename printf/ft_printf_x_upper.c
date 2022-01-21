@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:33 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/18 15:11:07 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/21 16:14:05 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*rev_str(char *hex_num)
 	int		x;
 	int		y;
 
-	x = strlen(hex_num);
+	x = ft_strlen(hex_num);
 	temp = malloc(sizeof(char) * x);
 	y = 0;
 	x -= 1;
