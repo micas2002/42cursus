@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:05:12 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/21 16:13:16 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/21 16:28:39 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ int	convert_hex_to_dec(int i, int decimal, int base, char *hex)
 
 int	ft_hexadecimal(char *hex)
 {
-	int	i;
-	int	decimal;
-	int	base;
+	int		i;
+	int		decimal;
+	int		base;
+	char	*str;
 
 	decimal = 0;
 	base = 1;
 	i = ft_strlen(hex) - 1;
-	convert_hex_to_dec(i, decimal, base, hex);
-	write (1, hex, i);
+	decimal = convert_hex_to_dec(i, decimal, base, hex);
+	str = ft_itoa(decimal);
+	write (1, str, i);
+	free (str);
 	return (i);
 }
 
