@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:33 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/21 16:14:05 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:18:15 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_printf_x_upper(va_list args)
 
 	hex_num = malloc(sizeof(char) * 500);
 	quotient = va_arg(args, int);
+	j = 0;
 	while (quotient != 0)
 	{
 		remainder = quotient % 16;
@@ -53,9 +54,8 @@ int	ft_printf_x_upper(va_list args)
 	}
 	hex_num[j] = '\0';
 	hex_num = rev_str(hex_num);
-	hex_num = ft_upper(hex_num);
 	i = ft_strlen(hex_num);
 	write (1, hex_num, i);
 	free (hex_num);
-	return (i);
+	return (i + 2);
 }

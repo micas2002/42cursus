@@ -17,6 +17,6 @@ int	ft_printf_c(va_list args)
 	char	a;
 
 	a = va_arg(args, int) + 0;
-	ft_putchar_fd(a, 1);
+	write (1, a, 1);
 	return (1);
 }

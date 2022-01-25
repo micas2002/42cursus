@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:28 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/19 15:18:13 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:17:49 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ char	*ft_unsigned_itoa(unsigned int n)
 
 int	ft_printf_u(va_list args)
 {
-	unsigned int	a;
-	char			*str;
+	int		a;
+	char	*str;
 
-	a = va_arg(args, unsigned int);
+	a = va_arg(args, int);
 	if (a < 0)
 		a = 4294967295 + a;
 	str = ft_unsigned_itoa(a);

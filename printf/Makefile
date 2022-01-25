@@ -6,16 +6,14 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 13:33:51 by mibernar          #+#    #+#              #
-#    Updated: 2022/01/13 16:18:57 by mibernar         ###   ########.fr        #
+#    Updated: 2022/01/25 16:42:10 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ft_printf_c.c ft_printf_s.c ft_printf_i.c
+SRCS = ft_printf.c ft_printf_c.c ft_printf_d.c ft_printf_i.c ft_printf_p.c \
+		ft_printf_s.c ft_printf_u.c ft_printf_x_lower.c ft_printf_x_upper.c
 
 OBJS = $(SRCS:.c=.o)
-
-BONUS =	 
-BONUS_OBJS = $(BONUS:.c=.o)
 
 CC = gcc
 RM = rm -rf
@@ -29,7 +27,7 @@ $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
 $(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) -c $(SRCS)
+	$(CC) $(CFLAGS) -c $(SRCS) $(INC)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
