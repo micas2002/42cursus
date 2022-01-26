@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_u.c                                      :+:      :+:    :+:   */
+/*   ft_printf_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 13:04:28 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/26 17:19:51 by mibernar         ###   ########.fr       */
+/*   Created: 2022/01/26 15:14:53 by mibernar          #+#    #+#             */
+/*   Updated: 2022/01/26 15:27:29 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	lenght_int(long int n)
+static int	lenght_int(long int n)
 {
 	long int	x;
 	long int	temp;
@@ -31,7 +31,7 @@ int	lenght_int(long int n)
 	return (x);
 }
 
-void	write_numbers(long int n_value, char *str, int i)
+static void	write_numbers(long int n_value, char *str, int i)
 {
 	while (n_value > 0)
 	{
@@ -41,14 +41,14 @@ void	write_numbers(long int n_value, char *str, int i)
 	}
 }
 
-char	*ft_unsigned_itoa(unsigned int n)
+char	*ft_itoa(int n)
 {
 	char		*str;
 	int			i;
 	long int	n_value;
 
 	n_value = n;
-	str = (char *)malloc(sizeof(char) * (lenght_int(n) + 1));
+	str = malloc(sizeof(char) * (lenght_int(n) + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -67,17 +67,12 @@ char	*ft_unsigned_itoa(unsigned int n)
 	return (str);
 }
 
-int	ft_printf_u(int args)
+size_t	ft_strlen(const char *s)
 {
-	int		a;
-	char	*str;
+	int	x;
 
-	a = args;
-	if (a < 0)
-		a = 4294967295 + a;
-	str = ft_unsigned_itoa(a);
-	a = ft_strlen(str);
-	write (1, str, a);
-	free (str);
-	return (a);
+	x = 0;
+	while (s[x] != '\0')
+		x++;
+	return (x);
 }

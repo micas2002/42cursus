@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:39:08 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/25 15:13:56 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:19:23 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int	ft_printf_long_hexa(unsigned long int ptr)
 	return (i);
 }
 
-int	ft_printf_p(va_list args)
+int	ft_printf_p(void *args)
 {
 	char	*x;
 	int		size;
 	void	*ptr;
 
-	x = va_arg(args, void *);
+	x = args;
 	ptr = x;
 	size = ft_printf_long_hexa((unsigned long int)ptr);
 	return (size + 2);

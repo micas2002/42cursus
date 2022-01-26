@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:04:18 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/25 16:42:52 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:18:10 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,18 @@
 
 // PROTOTYPES
 
-int	ft_printf(const char *format, ...);
-int	ft_printf_c(va_list args);
-int	ft_printf_i(va_list args);
-int	ft_printf_d(va_list args);
-int	ft_printf_p(va_list args);
-int	ft_printf_s(va_list args);
-int	ft_printf_u(va_list args);
-int	ft_printf_x_lower(va_list args);
-int	ft_printf_x_upper(va_list args);
+int		ft_printf(const char *format, ...);
+int		ft_printf_c(int args);
+int		ft_printf_i(int args);
+int		ft_printf_d(int args);
+int		ft_printf_p(void *args);
+int		ft_printf_s(char *args);
+int		ft_printf_u(int args);
+int		ft_printf_x_lower(int args);
+int		ft_printf_x_upper(int args);
+char	*ft_itoa(int n);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

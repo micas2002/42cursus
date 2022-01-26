@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/25 15:07:08 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:31:48 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int	open_format_type(char format_type, va_list args)
 	int		size;
 
 	if (format_type == 'c')
-		size = ft_printf_c(args);
+		size = ft_printf_c(va_arg(args, int));
 	else if (format_type == 'd')
-		size = ft_printf_d(args);
+		size = ft_printf_d(va_arg(args, int));
 	else if (format_type == 'i')
-		size = ft_printf_i(args);
+		size = ft_printf_i(va_arg(args, int));
 	else if (format_type == 'p')
-		size = ft_printf_p(args);
+		size = ft_printf_p(va_arg(args, void *));
 	else if (format_type == 's')
-		size = ft_printf_s(args);
+		size = ft_printf_s(va_arg(args, char *));
 	else if (format_type == 'u')
-		size = ft_printf_u(args);
+		size = ft_printf_u(va_arg(args, int));
 	else if (format_type == 'x')
-		size = ft_printf_x_lower(args);
+		size = ft_printf_x_lower(va_arg(args, int));
 	else if (format_type == 'X')
-		size = ft_printf_x_upper(args);
+		size = ft_printf_x_upper(va_arg(args, int));
 	return (size);
 }
 
@@ -46,14 +46,15 @@ int	check_format(char *format, int x)
 
 int	treat_format(char *format, int x)
 {
-	while (format)
+	while (format[x] != '\0')
 	{
 		if (format[x] == '%' && format[x + 1])
 		{
-			if (format[x++] == '%')
+			if (format[x + 1] == '%')
 			{
 				write (1, "%", 1);
-				treat_format(format, (x + 2));
+				x += 2;
+				treat_format(format, x);
 			}
 			else
 			{
@@ -67,45 +68,30 @@ int	treat_format(char *format, int x)
 	return (x);
 }
 
-int	count_size(char *format, va_list args)
+int	ft_printf(const char *format, ...)
 {
 	int		size;
 	int		x;
-	char	format_type;
-
-	x = 0;
-	size = 0;
-	while (format)
-	{
-		x = treat_format(format, x);
-		if (check_format(format, x) == 1)
-		{
-			format_type = format[x];
-			size += open_format_type(format_type, args);
-		}
-		x++;
-		args++;
-	}
-	return (size);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	int		arg_size;
 	char	*temp;
+	char	format_type;
 	va_list	args;
 
 	if (!format)
 		return (-1);
+	x = 0;
+	size = 0;
 	temp = ft_strdup(format);
 	va_start(args, format);
-	arg_size = count_size(temp, args);
+	while (temp[x] != '\0')
+	{
+		x = treat_format(temp, x);
+		if (check_format(temp, x) == 1)
+		{
+			format_type = temp[x];
+			size += open_format_type(format_type, args);
+		}
+		x++;
+	}
 	va_end(args);
-	return (arg_size);
-}
-
-int	main(void)
-{
-	ft_printf("%c", 'a');
-	return (0);
+	return (size);
 }

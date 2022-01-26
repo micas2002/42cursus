@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:05:12 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/21 16:28:39 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:18:59 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_hexadecimal(char *hex)
 
 	decimal = 0;
 	base = 1;
-	i = ft_strlen(hex) - 1;
+	i = ft_strlen(hex);
 	decimal = convert_hex_to_dec(i, decimal, base, hex);
 	str = ft_itoa(decimal);
 	write (1, str, i);
@@ -76,13 +76,13 @@ int	ft_octal(int n)
 	return (size);
 }
 
-int	ft_printf_i(va_list args)
+int	ft_printf_i(int args)
 {
 	int		a;
 	int		size;
 	char	*str;
 
-	a = va_arg(args, int);
+	a = args;
 	str = ft_itoa(a);
 	if (str[0] == 30)
 	{

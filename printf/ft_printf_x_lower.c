@@ -6,13 +6,13 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:31 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/25 15:14:07 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:20:06 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*rev_str(char *hex_num)
+static char	*rev_str(char *hex_num)
 {
 	char	*temp;
 	int		x;
@@ -32,7 +32,7 @@ char	*rev_str(char *hex_num)
 	return (temp);
 }
 
-int	ft_printf_x_lower(va_list args)
+int	ft_printf_x_lower(int args)
 {
 	long	quotient;
 	long	remainder;
@@ -41,7 +41,7 @@ int	ft_printf_x_lower(va_list args)
 	char	*hex_num;
 
 	hex_num = malloc(sizeof(char) * 500);
-	quotient = va_arg(args, int);
+	quotient = args;
 	j = 0;
 	while (quotient != 0)
 	{
