@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/26 17:31:48 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:31:41 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,54 +44,64 @@ int	check_format(char *format, int x)
 	return (0);
 }
 
-int	treat_format(char *format, int x)
+int	treat_format(char *format, va_list args)
 {
+	char	format_type;
+	int		size;
+	int		x;
+	int		loop;
+
+	size = 0;
+	x = 0;
+	loop = 0;
 	while (format[x] != '\0')
 	{
 		if (format[x] == '%' && format[x + 1])
 		{
-			if (format[x + 1] == '%')
+			x++;
+			loop++;
+			if (format[x] != '%' && check_format(format, x) == 1)
 			{
-				write (1, "%", 1);
-				x += 2;
-				treat_format(format, x);
+				format_type = format[x];
+				size += open_format_type(format_type, args);
 			}
 			else
 			{
-				x++;
-				break ;
-			}		
+				ft_putchar_fd(format[x], 1);
+				size++;
+			}
 		}
-		ft_putchar_fd(format[x], 1);
+		else
+			ft_putchar_fd(format[x], 1);
 		x++;
+		size++;
 	}
-	return (x);
+	va_end(args);
+	return (size - loop);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int		size;
 	int		x;
 	char	*temp;
-	char	format_type;
 	va_list	args;
 
 	if (!format)
 		return (-1);
-	x = 0;
-	size = 0;
-	temp = ft_strdup(format);
 	va_start(args, format);
-	while (temp[x] != '\0')
-	{
-		x = treat_format(temp, x);
-		if (check_format(temp, x) == 1)
-		{
-			format_type = temp[x];
-			size += open_format_type(format_type, args);
-		}
-		x++;
-	}
-	va_end(args);
-	return (size);
+	temp = ft_strdup(format);
+	x = treat_format(temp, args);
+	free (temp);
+	return (x);
+}
+
+int	main(void)
+{
+	int	x;
+	int	y;
+
+	x = ft_printf(" %X ", -1);
+	y = printf(" %X ", -1);
+	printf("my size: %d\n", x);
+	printf("og size: %d\n", y);
 }

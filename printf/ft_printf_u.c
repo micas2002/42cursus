@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:04:28 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/26 17:19:51 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:40:43 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_printf_u(int args)
 
 	a = args;
 	if (a < 0)
-		a = 4294967295 + a;
+		a = 4294967296 + a;
 	str = ft_unsigned_itoa(a);
 	a = ft_strlen(str);
 	write (1, str, a);
