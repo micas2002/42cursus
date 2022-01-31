@@ -6,25 +6,23 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:39:08 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/28 15:36:51 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:07:36 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*rev_str(char *hex_num)
+static char	*rev_str(char *hex_num)
 {
 	char	*temp;
 	int		x;
 	int		y;
 
-	if (!hex_num)
-		return (NULL);
 	x = ft_strlen(hex_num);
-	temp = malloc(sizeof(char) * x);
+	temp = malloc(sizeof(char) * x + 1);
 	y = 0;
 	x -= 1;
-	while (x >= 0)
+	while (hex_num && x >= 0)
 	{
 		temp[y] = hex_num[x];
 		x--;
@@ -34,16 +32,11 @@ char	*rev_str(char *hex_num)
 	return (temp);
 }
 
-int	ft_printf_long_hexa(unsigned long int ptr)
+static char	*convert(long quotient, char *hex_num)
 {
-	long	quotient;
-	long	remainder;
-	int		i;
 	int		j;
-	char	*hex_num;
+	long	remainder;
 
-	hex_num = malloc(sizeof(char) * 500);
-	quotient = ptr;
 	j = 0;
 	while (quotient != 0)
 	{
@@ -55,13 +48,28 @@ int	ft_printf_long_hexa(unsigned long int ptr)
 		quotient = quotient / 16;
 	}
 	hex_num[j] = '\0';
-	hex_num = rev_str(hex_num);
-	i = ft_strlen(hex_num);
+	return (hex_num);
+}
+
+int	ft_printf_x_unsigned(unsigned long int args)
+{
+	long	quotient;
+	int		i;
+	char	*hex_num;
+	char	*final;
+
+	quotient = args;
+	hex_num = malloc(sizeof(char) * 500);
+	final = convert(quotient, hex_num);
+	final = rev_str(final);
+	i = ft_strlen(final);
 	write (1, "0x", 2);
-	write (1, hex_num, i);
+	write (1, final, i);
 	free (hex_num);
+	free (final);
 	return (i);
 }
+
 
 int	ft_printf_p(void *args)
 {
@@ -70,9 +78,12 @@ int	ft_printf_p(void *args)
 	void	*ptr;
 
 	x = args;
+	if (x == NULL)
+	{
+		write (1, "(nil)", 5);
+		return (5);
+	}
 	ptr = x;
-	size = ft_printf_long_hexa((unsigned long int)ptr);
-	free (x);
-	free (ptr);
+	size = ft_printf_x_unsigned((unsigned long int)ptr);
 	return (size + 2);
 }

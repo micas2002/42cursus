@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/28 17:31:41 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:05:26 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	main(void)
 	int	x;
 	int	y;
 
-	x = ft_printf(" %X ", -1);
-	y = printf(" %X ", -1);
+	x = ft_printf("%p\n", (void *)ULONG_MAX);
+	y = printf("%p\n", (void *)ULONG_MAX);
 	printf("my size: %d\n", x);
 	printf("og size: %d\n", y);
 }
