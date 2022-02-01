@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:39:08 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/31 13:07:36 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/01 17:12:58 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ static char	*convert(long quotient, char *hex_num)
 	{
 		remainder = quotient % 16;
 		if (remainder < 10)
-			hex_num[j++] = 48 + remainder;
+		{
+			if (remainder >= 0)
+				hex_num[j++] = 48 + remainder;
+			else
+				hex_num[j++] = 48 - remainder;
+		}
 		else
 			hex_num[j++] = 87 + remainder;
 		quotient = quotient / 16;
@@ -51,7 +56,7 @@ static char	*convert(long quotient, char *hex_num)
 	return (hex_num);
 }
 
-int	ft_printf_x_unsigned(unsigned long int args)
+int	ft_printf_x_unsigned(long args)
 {
 	long	quotient;
 	int		i;
@@ -59,6 +64,8 @@ int	ft_printf_x_unsigned(unsigned long int args)
 	char	*final;
 
 	quotient = args;
+	if (quotient > LONG_MAX)
+		quotient = (unsigned long)quotient;
 	hex_num = malloc(sizeof(char) * 500);
 	final = convert(quotient, hex_num);
 	final = rev_str(final);
@@ -69,7 +76,6 @@ int	ft_printf_x_unsigned(unsigned long int args)
 	free (final);
 	return (i);
 }
-
 
 int	ft_printf_p(void *args)
 {
@@ -84,6 +90,6 @@ int	ft_printf_p(void *args)
 		return (5);
 	}
 	ptr = x;
-	size = ft_printf_x_unsigned((unsigned long int)ptr);
+	size = ft_printf_x_unsigned((long)ptr);
 	return (size + 2);
 }
