@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:04:18 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/01 15:24:46 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:32:02 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
-# include "limits.h"
 
 // PROTOTYPES
 
@@ -37,5 +36,6 @@ char	*ft_itoa(int n);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 void	ft_putchar_fd(char c, int fd);
+char	*ft_unsigned_itoa(unsigned int n);
 
 #endif

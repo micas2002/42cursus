@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:02:10 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/01 17:06:43 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:31:48 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	open_format_type(char format_type, va_list args)
 {
 	int		size;
 
+	size = 0;
 	if (format_type == 'c')
 		size = ft_printf_c(va_arg(args, int));
 	else if (format_type == 'd')
@@ -44,9 +45,25 @@ int	check_format(char *format, int x)
 	return (0);
 }
 
-int	treat_format(char *format, va_list args)
+int	size_counter(char *format, int x, int size, va_list args)
 {
 	char	format_type;
+
+	if (format[x] != '%' && check_format(format, x) == 1)
+	{
+		format_type = format[x];
+		size += open_format_type(format_type, args);
+	}
+	else
+	{
+		ft_putchar_fd(format[x], 1);
+		size++;
+	}
+	return (size);
+}
+
+int	treat_format(char *format, va_list args)
+{
 	int		size;
 	int		x;
 	int		loop;
@@ -60,16 +77,7 @@ int	treat_format(char *format, va_list args)
 		{
 			x++;
 			loop++;
-			if (format[x] != '%' && check_format(format, x) == 1)
-			{
-				format_type = format[x];
-				size += open_format_type(format_type, args);
-			}
-			else
-			{
-				ft_putchar_fd(format[x], 1);
-				size++;
-			}
+			size = size_counter(format, x, size, args);
 		}
 		else
 			ft_putchar_fd(format[x], 1);
@@ -94,4 +102,3 @@ int	ft_printf(const char *format, ...)
 	free (temp);
 	return (x);
 }
-

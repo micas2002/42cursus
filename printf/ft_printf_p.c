@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:39:08 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/01 17:12:58 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:20:01 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,17 @@ static char	*rev_str(char *hex_num)
 	return (temp);
 }
 
-static char	*convert(long quotient, char *hex_num)
+static char	*convert(unsigned long quotient, char *hex_num)
 {
-	int		j;
-	long	remainder;
+	int				j;
+	unsigned long	remainder;
 
 	j = 0;
 	while (quotient != 0)
 	{
 		remainder = quotient % 16;
 		if (remainder < 10)
-		{
-			if (remainder >= 0)
-				hex_num[j++] = 48 + remainder;
-			else
-				hex_num[j++] = 48 - remainder;
-		}
+			hex_num[j++] = 48 + remainder;
 		else
 			hex_num[j++] = 87 + remainder;
 		quotient = quotient / 16;
@@ -56,40 +51,41 @@ static char	*convert(long quotient, char *hex_num)
 	return (hex_num);
 }
 
-int	ft_printf_x_unsigned(long args)
+char	*hexa_convert(unsigned long args)
 {
-	long	quotient;
-	int		i;
-	char	*hex_num;
-	char	*final;
+	unsigned long	quotient;
+	char			*hex_num;
+	char			*final;
 
-	quotient = args;
-	if (quotient > LONG_MAX)
-		quotient = (unsigned long)quotient;
+	if (args < 0)
+		quotient = 4294967296 + args;
+	else if (args == 0)
+	{
+		final = malloc(sizeof(char) * 1);
+		final[0] = '0';
+		final[1] = '\0';
+		return (final);
+	}
+	else
+		quotient = args;
 	hex_num = malloc(sizeof(char) * 500);
 	final = convert(quotient, hex_num);
 	final = rev_str(final);
-	i = ft_strlen(final);
-	write (1, "0x", 2);
-	write (1, final, i);
 	free (hex_num);
-	free (final);
-	return (i);
+	return (final);
 }
 
 int	ft_printf_p(void *args)
 {
-	char	*x;
-	int		size;
-	void	*ptr;
+	unsigned long	address;
+	size_t			size;
+	char			*str;
 
-	x = args;
-	if (x == NULL)
-	{
-		write (1, "(nil)", 5);
-		return (5);
-	}
-	ptr = x;
-	size = ft_printf_x_unsigned((long)ptr);
+	address = (unsigned long) args;
+	str = hexa_convert(address);
+	size = ft_strlen(str);
+	write(1, "0x", 2);
+	write(1, str, size);
+	free(str);
 	return (size + 2);
 }

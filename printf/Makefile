@@ -6,13 +6,13 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 13:33:51 by mibernar          #+#    #+#              #
-#    Updated: 2022/01/26 15:20:22 by mibernar         ###   ########.fr        #
+#    Updated: 2022/02/02 12:02:44 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_printf.c ft_printf_c.c ft_printf_d.c ft_printf_i.c ft_printf_p.c \
 		ft_printf_s.c ft_printf_u.c ft_printf_x_lower.c ft_printf_x_upper.c \
-		ft_printf_utils_1.c ft_printf_utils_2.c
+		ft_printf_utils_1.c ft_printf_utils_2.c ft_unsigned_itoa.c
 
 OBJS = $(SRCS:.c=.o)
 
