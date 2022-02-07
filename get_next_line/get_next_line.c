@@ -6,146 +6,132 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:44:57 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/06 12:31:56 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:00:49 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd, char *temp)
+char	*ft_read(int fd)
 {
 	char	*buffer;
-	int		x;
+	size_t	size;
 
-	x = BUFFER_SIZE;
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE) + 1);
-	while (ft_strchr(temp, 10) == 0 && x > 0)
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	size = read(fd, buffer, BUFFER_SIZE);
+	if (size <= 0 || size > BUFFER_SIZE)
 	{
-		x = read(fd, buffer, BUFFER_SIZE);
-		if (x < 1)
-		{
-			if (x < 0)
-			{
-				free (buffer);
-				return (NULL);
-			}
-			else if (!temp)
-			{
-				free (buffer);
-				return (NULL);
-			}
-		}
-		buffer[x] = '\0';
-		temp = ft_strjoin(temp, buffer);
+		free(buffer);
+		return (NULL);
 	}
-	free (buffer);
+	buffer[size] = '\0';
+	return (buffer);
+}
+
+char	*find_new_line(int fd, char *str)
+{
+	char	*new_str;
+	char	*temp;
+
+	new_str = ft_read(fd);
+	if (!new_str)
+		return (str);
+	while (ft_strchr(new_str, '\n') == 0)
+	{
+		temp = str;
+		str = ft_strjoin(temp, new_str);
+		if (new_str)
+			free (new_str);
+		if (temp)
+			free (temp);
+		new_str = ft_read(fd);
+		if (!new_str)
+			return (str);
+	}
+	temp = str;
+	str = ft_strjoin(temp, new_str);
+	if (new_str)
+		free(new_str);
+	if (temp)
+		free(temp);
+	return (str);
+}
+
+char	*treat_str(char *str)
+{
+	char	*temp;
+	int		x;
+	size_t	size;
+	size_t	new_line_pos;
+
+	if (ft_strchr(str, '\n') == 0)
+		return (str);
+	size = ft_strlen(str);
+	x = 0;
+	while (str[x] != '\n' && str)
+		x++;
+	new_line_pos = x;
+	size = size - new_line_pos;
+	temp = malloc(sizeof(char) * (size + 1));
+	x = 0;
+	new_line_pos++;
+	while (str[new_line_pos])
+	{
+		temp[x] = str[new_line_pos];
+		x++;
+		new_line_pos++;
+	}
+	temp[x] = '\0';
+	free (str);
 	return (temp);
 }
 
-int	line_size(char *temp)
+char	*treat_temp(char *temp)
 {
-	int	x;
-
-	x = 0;
-	while (temp[x] != '\0' && temp[x] != 10)
-		x++;
-	if (temp[x] == 10)
-		return (x + 1);
-	else
-		return (x);
-}
-
-char	*next_line(char *temp)
-{
-	char	*next_line;
+	char	*new_str;
 	int		x;
-	int		y;
 
-	if (!temp)
-		return (NULL);
-	if (ft_strchr(temp, 10) == 0)
-		return (NULL);
+	if (ft_strchr(temp, '\n') == 0)
+		return (temp);
 	x = 0;
-	while (temp[x] != 10)
+	while (temp[x] != '\n')
 		x++;
-	y = 0;
-	while (temp[y])
-		y++;
-	next_line = malloc(sizeof(char) * (y - x));
-	x++;
-	while (x < y && temp[x] != 10)
+	new_str = malloc(sizeof(char) * (x + 2));
+	x = 0;
+	while (temp[x] != '\n')
 	{
-		next_line[x] = temp[x];
+		new_str[x] = temp[x];
 		x++;
 	}
-	return (next_line);
-}
-
-char	*write_line(char *temp)
-{
-	char	*line;
-	int		x;
-	int		y;
-
-	if (!temp)
-	{
-		free (temp);
-		return (NULL);
-	}
-	x = line_size(temp);
-	line = malloc(sizeof(char) * (x + 1));
-	if (!line)
-		return (NULL);
-	y = 0;
-	while (y < x && temp[y] != 10)
-	{
-		line[y] = temp[y];
-		y++;
-	}
-	if (temp[y] == 10)
-	{
-		line[y] = 10;
-		y++;
-	}
-	line[y] = '\0';
-	return (line);
+	new_str[x] = temp[x];
+	new_str[++x] = '\0';
+	free (temp);
+	return (new_str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*temp;
-	char		*str;
+	static char	*str;
+	char		*temp;
+	char		*next_line;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	temp = ft_read(fd, temp);
-	str = write_line(temp);
-	temp = next_line(temp);
-	if (!str && !temp)
-	{
-		free (str);
-		free (temp);
+	next_line = ft_read(fd);
+	temp = str;
+	str = ft_strjoin(temp, next_line);
+	if (next_line)
+		free(next_line);
+	if (temp)
+		free(temp);
+	if (!str)
 		return (NULL);
-	}
-	return (str);
-}
-int main(void)
-{
-	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
-
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	close(fd);
+	if (ft_strchr(str, '\n') == 0)
+		str = find_new_line(fd, str);
+	temp = ft_strdup(str);
+	temp = treat_temp(temp);
+	str = treat_str(str);
+	return (temp);
 }
