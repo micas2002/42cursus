@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:44:57 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/07 16:00:49 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:15:13 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*treat_str(char *str)
 		return (str);
 	size = ft_strlen(str);
 	x = 0;
-	while (str[x] != '\n' && str)
+	while (str[x] != '\n')
 		x++;
 	new_line_pos = x;
 	size = size - new_line_pos;
@@ -134,4 +134,24 @@ char	*get_next_line(int fd)
 	temp = treat_temp(temp);
 	str = treat_str(str);
 	return (temp);
+}
+
+int main(void)
+{
+	int fd = open("/home/miguel/Desktop/get_next_line_test", O_RDONLY);
+
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	close(fd);
 }
