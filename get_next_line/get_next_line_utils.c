@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:57:05 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/11 17:13:12 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:01:49 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*ft_strdup(char *s1)
 
 	if (s1[0] == '\0')
 		return (NULL);
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	dest = malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!dest)
 		return (NULL);
 	x = 0;
@@ -99,4 +99,33 @@ char	*ft_strdup(char *s1)
 	}
 	dest[x] = '\0';
 	return (dest);
+}
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	unsigned int	j;
+	char			*str;
+
+	if (ft_strlen(s) < len)
+		str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	else if (start > ft_strlen(s))
+		str = (char *)malloc(sizeof(char) * 1);
+	else
+		str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+	return (str);
 }

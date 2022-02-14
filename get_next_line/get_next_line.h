@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:46:09 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/08 15:18:53 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:01:52 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int		find_new_line_temp(char *buffer);
 char	*ft_strdup(char *s1);
 int		ft_strchr(char *temp, int c);
 size_t	ft_strlen(char *s);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif
