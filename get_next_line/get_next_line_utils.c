@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:57:05 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/14 14:01:49 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:28:35 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,42 +42,29 @@ int	ft_strchr(char *temp, int c)
 	return (0);
 }
 
-static char	*join(char *str, char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		x;
 	int		y;
-
-	x = 0;
-	y = 0;
-	if (s1)
-	{
-		while (s1[x] != '\0')
-		{
-			str[x] = s1[x];
-			x++;
-		}
-	}
-	if (s2)
-	{
-		while (s2[y] != '\0')
-		{
-			str[x] = s2[y];
-			x++;
-			y++;
-		}
-	}
-	str[x] = '\0';
-	return (str);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
 	char	*str;
 
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
-	str = join(str, s1, s2);
+	x = 0;
+	y = 0;
+	while (s1 && s1[x] != '\0')
+	{
+		str[x] = s1[x];
+		x++;
+	}
+	while (s2 && s2[y] != '\0')
+	{
+		str[x] = s2[y];
+		x++;
+		y++;
+	}
+	str[x] = '\0';
 	return (str);
 }
 
