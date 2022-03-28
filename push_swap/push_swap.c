@@ -6,30 +6,26 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/25 17:52:14 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:11:40 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(int argc, char **argv)
+t_stack	init_stack(int argc, char **argv)
 {
-	int		top;
-	int		i;
-	char	**stack_a;
-	char	**stack_b;
+	int				position;
+	struct stack	*head;
 
-	top = -1;
-	i = 1;
-	stack_a = malloc(sizeof(char *) * argc);
-	while (top <= (argc))
+	head = NULL;
+	head = (struct stack *)malloc(sizeof(struct stack) * argc);
+	position = 2;
+	while (position <= argc)
 	{
-		top = top + 1;
-		stack_a[top] = argv[i];
-		top++;
-		i++;
+		head->data = argv[position];
+		head->next;
+		position++;
 	}
-	return ;
 }
 
 int	main(int argc, char **argv)
