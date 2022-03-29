@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/29 11:42:40 by mibernar         ###   ########.fr       */
+/*   Created: 2022/03/29 12:28:18 by mibernar          #+#    #+#             */
+/*   Updated: 2022/03/29 12:30:45 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-t_stack	init_stack(int argc, char **argv)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int		position;
-	t_stack	*head;
+	unsigned int	x;
 
-	head = NULL;
-	head = (struct stack *)malloc(sizeof(struct stack) * argc);
-	position = 1;
-	while (position <= argc)
-	{
-		head->data = argv[position];
-		head = head->next;
-		position++;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	init_stack(argc, argv);
-	return (0);
+	x = 0;
+	while (s1[x] == s2[x] && (s1[x] != '\0' && s2[x] != '\0'))
+		x++;
+	if (s1[x] != s2[x])
+		return (0);
+	return (1);
 }
