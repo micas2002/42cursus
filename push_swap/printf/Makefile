@@ -5,27 +5,28 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/03/30 15:42:30 by mibernar         ###   ########.fr        #
+#    Created: 2022/01/06 13:33:51 by mibernar          #+#    #+#              #
+#    Updated: 2022/03/30 15:33:13 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c error_check.c
+SRCS = ft_printf.c ft_printf_c.c ft_printf_d.c ft_printf_i.c ft_printf_p.c \
+		ft_printf_s.c ft_printf_u.c ft_printf_x_lower.c ft_printf_x_upper.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 RM = rm -rf
 CFLAGS = -Werror -Wextra -Wall
-PRINTF_DIR = printf
+LIBFT_DIR = libft
 
-NAME = pushswap.a
+NAME = libftprintf.a
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	cp printf/ptintf.a ./$(NAME)
+	cp libft/libft.a ./$(NAME)
 	ar -rcs $(NAME) $(OBJS)
 
 $(OBJS): $(SRCS)
@@ -33,11 +34,11 @@ $(OBJS): $(SRCS)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
-	make clean -C $(PRINTF_DIR)
+	make clean -C $(LIBFT_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
-	make fclean -C $(PRINTF_DIR)
+	make fclean -C $(LIBFT_DIR)
 
 re:	fclean all
 

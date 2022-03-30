@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:37:24 by mibernar         ###   ########.fr       */
+/*   Created: 2021/11/11 10:53:30 by mibernar          #+#    #+#             */
+/*   Updated: 2021/11/17 15:31:42 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-// PROTOTYPES
-
-typedef struct stack
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int				data;
-	struct stack	*next;
-}t_stack;
+	t_list	*new_lst;
+	t_list	*new_elem;
 
-int	error_check(int argc, char **argv);
-
-#endif
+	if (!f)
+		return (NULL);
+	new_lst = NULL;
+	while (lst)
+	{
+		new_elem = ft_lstnew(f(lst->content));
+		if (!new_elem)
+		{
+			ft_lstclear(&new_lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_lst, new_elem);
+		lst = lst->next;
+	}
+	return (new_lst);
+}

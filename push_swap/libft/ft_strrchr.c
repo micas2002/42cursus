@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:37:24 by mibernar         ###   ########.fr       */
+/*   Created: 2021/10/25 10:49:06 by mibernar          #+#    #+#             */
+/*   Updated: 2021/11/13 16:21:17 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-// PROTOTYPES
-
-typedef struct stack
+char	*ft_strrchr(const char *s, int c)
 {
-	int				data;
-	struct stack	*next;
-}t_stack;
+	int		x;
+	char	chr;
+	char	*ptr;
 
-int	error_check(int argc, char **argv);
-
-#endif
+	x = 0;
+	chr = c;
+	ptr = (void *)s;
+	while (ptr[x] != '\0')
+	{
+		x++;
+	}
+	while (x >= 0)
+	{
+		if (ptr[x] == chr)
+		{
+			return (&ptr[x]);
+		}
+		x--;
+	}
+	return (NULL);
+}

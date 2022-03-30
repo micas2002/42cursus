@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:37:24 by mibernar         ###   ########.fr       */
+/*   Created: 2021/10/18 16:07:57 by mibernar          #+#    #+#             */
+/*   Updated: 2022/03/29 12:27:32 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-// PROTOTYPES
-
-typedef struct stack
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int				data;
-	struct stack	*next;
-}t_stack;
+	unsigned int	x;
 
-int	error_check(int argc, char **argv);
-
-#endif
+	x = 0;
+	if (n == 0)
+		return (0);
+	while ((unsigned char)s1[x] == (unsigned char)s2[x]
+		&& ((unsigned char)s1[x] != '\0'
+			&& (unsigned char)s2[x] != '\0' ) && x < n - 1)
+		x++;
+	return ((unsigned char)s1[x] - (unsigned char)s2[x]);
+}

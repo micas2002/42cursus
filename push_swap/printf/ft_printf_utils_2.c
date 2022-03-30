@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:37:24 by mibernar         ###   ########.fr       */
+/*   Created: 2022/01/26 15:19:38 by mibernar          #+#    #+#             */
+/*   Updated: 2022/01/26 15:27:56 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-// PROTOTYPES
-
-typedef struct stack
+static char	ft_strcpy(char *dst, const char *src)
 {
-	int				data;
-	struct stack	*next;
-}t_stack;
+	int	x;
 
-int	error_check(int argc, char **argv);
+	x = 0;
+	while (src[x] != '\0')
+	{
+		dst[x] = src[x];
+		x++;
+	}
+	dst[x] = '\0';
+	return (*dst);
+}
 
-#endif
+char	*ft_strdup(const char *s1)
+{
+	char	*dest;
+
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!dest)
+		return (NULL);
+	ft_strcpy(dest, s1);
+	return (dest);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

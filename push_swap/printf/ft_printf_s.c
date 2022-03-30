@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:37:24 by mibernar         ###   ########.fr       */
+/*   Created: 2022/01/10 12:50:08 by mibernar          #+#    #+#             */
+/*   Updated: 2022/01/31 12:25:27 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-// PROTOTYPES
-
-typedef struct stack
+int	ft_printf_s(char *args)
 {
-	int				data;
-	struct stack	*next;
-}t_stack;
+	int		size;
 
-int	error_check(int argc, char **argv);
-
-#endif
+	if (!args)
+	{
+		write (1, "(null)", 6);
+		return (6);
+	}
+	size = 0;
+	while (args[size] != '\0')
+		size++;
+	write (1, args, size);
+	return (size);
+}

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:37:24 by mibernar         ###   ########.fr       */
+/*   Created: 2021/10/18 15:12:23 by mibernar          #+#    #+#             */
+/*   Updated: 2021/10/28 15:02:07 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
-
-// PROTOTYPES
-
-typedef struct stack
+void	*ft_memset(void *b, int c, size_t n)
 {
-	int				data;
-	struct stack	*next;
-}t_stack;
+	int	i;
+	int	a;
 
-int	error_check(int argc, char **argv);
-
-#endif
+	a = n;
+	i = 0;
+	while (i < a)
+	{
+		*(unsigned char *)(b + i) = c;
+		i++;
+	}
+	return (b);
+}

@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:59:19 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/29 12:46:29 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:47:16 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_duplicate(int argc, char **argv, int i)
 	pos = 0;
 	while (pos <= argc)
 	{
-		if (ft_strcmp(argv[pos], argv[i]))
+		if (ft_strncmp(argv[pos], argv[i], ft_strlen(argv[i]) == 0))
 			return (0);
 		pos++;
 	}
@@ -47,7 +47,7 @@ int	error_check(int argc, char **argv)
 	int	i;
 
 	if (argc < 2)
-		return (NULL);
+		return (0);
 	i = 1;
 	while (i <= argc)
 	{

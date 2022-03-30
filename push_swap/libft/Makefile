@@ -5,39 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/03/30 15:42:30 by mibernar         ###   ########.fr        #
+#    Created: 2021/10/19 13:27:06 by mibernar          #+#    #+#              #
+#    Updated: 2021/11/16 11:47:10 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c error_check.c
-
+SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
+	ft_isprint.c ft_memset.c ft_strdup.c ft_strlcat.c ft_strlen.c ft_strncmp.c \
+	ft_strnstr.c ft_strlcpy.c ft_toupper.c ft_tolower.c ft_putchar_fd.c ft_putnbr_fd.c \
+	ft_calloc.c ft_memchr.c ft_strchr.c ft_strrchr.c ft_memcmp.c ft_putstr_fd.c ft_memmove.c \
+	ft_strjoin.c ft_putendl_fd.c ft_substr.c ft_strtrim.c ft_memcpy.c ft_itoa.c ft_strmapi.c \
+	ft_striteri.c ft_split.c
 OBJS = $(SRCS:.c=.o)
+
+BONUS =	 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+	ft_lstclear.c ft_lstiter.c ft_lstmap.c
+BONUS_OBJS = $(BONUS:.c=.o)
 
 CC = gcc
 RM = rm -rf
-CFLAGS = -Werror -Wextra -Wall
-PRINTF_DIR = printf
+CFLAGS = -Werror -Wextra -Wall 
 
-NAME = pushswap.a
+NAME = libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
-	cp printf/ptintf.a ./$(NAME)
 	ar -rcs $(NAME) $(OBJS)
 
 $(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) -c $(SRCS) $(INC)
+	$(CC) $(CFLAGS) -c $(SRCS)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
-	make clean -C $(PRINTF_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
-	make fclean -C $(PRINTF_DIR)
 
 re:	fclean all
 
