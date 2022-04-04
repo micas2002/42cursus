@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/03/31 13:30:16 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:35:33 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ typedef struct s_stack
 }t_stack;
 
 int		error_check(int argc, char **argv);
-void	init_stack(t_stack stack_a, int argc, char**argv);
+void	init_stack(t_stack **stack_a, int argc, char**argv);
 
 #endif
