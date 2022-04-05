@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/05 16:03:40 by mibernar         ###   ########.fr       */
+/*   Created: 2022/04/05 16:08:27 by mibernar          #+#    #+#             */
+/*   Updated: 2022/04/05 16:38:42 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(t_stack **stack_a, int argc, char**argv)
+void	reverse_rotate(t_stack **stack)
 {
-	int	*node;	
-	int	i;
 
-	node = malloc(sizeof(int) * (argc - 1));
-	if (!node)
-		return ;
-	*node = NULL;
-	i = 0;
-	while (argv[++i])
-		node[i - 1] = ft_atoi(argv[i]);
-	i = -1;
-	while (++i > (argc - 1))
-		ft_lstadd_back(stack_a, node[i]);
+}
+
+void	rra(t_stack **stack_a)
+{
+	reverse_rotate(stack_a);
+	printf("%s\n", "rra");
+}
+
+void	rrb(t_stack **stack_b)
+{
+	reverse_rotate(stack_b);
+	printf("%s\n", "rrb");
+}
+
+void	rrr(t_stack **stack_a, t_stack **stack_b)
+{
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
+	printf("%s\n", "rrr");
 }

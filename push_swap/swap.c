@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/05 16:03:40 by mibernar         ###   ########.fr       */
+/*   Created: 2022/04/05 16:07:48 by mibernar          #+#    #+#             */
+/*   Updated: 2022/04/05 16:34:34 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(t_stack **stack_a, int argc, char**argv)
+void	swap(t_stack **stack)
 {
-	int	*node;	
-	int	i;
+	
+}
 
-	node = malloc(sizeof(int) * (argc - 1));
-	if (!node)
-		return ;
-	*node = NULL;
-	i = 0;
-	while (argv[++i])
-		node[i - 1] = ft_atoi(argv[i]);
-	i = -1;
-	while (++i > (argc - 1))
-		ft_lstadd_back(stack_a, node[i]);
+void	sa(t_stack **stack_a)
+{
+	swap(stack_a);
+	printf("%s\n", "sa");
+}
+
+void	sb(t_stack **stack_b)
+{
+	swap(stack_b);
+	printf("%s\n", "sb");
+}
+
+void	ss(t_stack **stack_a, t_stack **stack_b)
+{
+	swap(stack_a);
+	swap(stack_b);
+	printf("%s\n", "ss");
 }

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/05 16:03:40 by mibernar         ###   ########.fr       */
+/*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
+/*   Updated: 2022/04/05 16:36:27 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(t_stack **stack_a, int argc, char**argv)
+void	push(t_stack **stack_1, t_stack **stack_2)
 {
-	int	*node;	
-	int	i;
 
-	node = malloc(sizeof(int) * (argc - 1));
-	if (!node)
-		return ;
-	*node = NULL;
-	i = 0;
-	while (argv[++i])
-		node[i - 1] = ft_atoi(argv[i]);
-	i = -1;
-	while (++i > (argc - 1))
-		ft_lstadd_back(stack_a, node[i]);
+}
+
+void	pa(t_stack **stack_a, t_stack **stack_b)
+{
+	push(stack_a, stack_b);
+	printf("%s\n", "pa");
+}
+
+void	pb(t_stack **stack_a, t_stack **stack_b)
+{
+	push(stack_b, stack_a);
+	printf("%s\n", "pb");
 }
