@@ -6,11 +6,12 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/03/31 12:37:34 by mibernar         ###   ########.fr        #
+#    Updated: 2022/04/07 11:37:35 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c error_check.c
+SRCS = push_swap.c error_check.c swap.c \
+	init_stack.c
 
 OBJS = $(SRCS:.c=.o)
 
