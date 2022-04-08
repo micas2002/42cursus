@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:08:09 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/05 16:37:56 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:01:54 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rotate(t_stack **stack)
 {
-
+	t_stack	*temp;
 }
 
 void	ra(t_stack **stack_a)

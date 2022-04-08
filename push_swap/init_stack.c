@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/07 12:21:39 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/08 16:43:01 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,35 @@ void	init_stack(t_stack **stack_a, int argc, char **argv)
 	i = -1;
 	while (++i < (argc - 1))
 	{
-		node = temp[i];
+		node = create_stack(temp[i]);
 		ft_lstadd_back(stack_a, node);
 		node = node->next;
 	}
+}
+
+t_stack	*create_stack(int data)
+{
+	t_stack	*head;
+	t_stack	*temp;
+
+	temp = (t_stack *)malloc(sizeof(t_stack));
+	if (!temp)
+		return (NULL);
+	head = NULL;
+	temp->data = data;
+	temp->next = NULL;
+	head = temp;
+	return (head);
+}
+
+void	del_one(t_list *lst)
+{
+	t_list	*temp;
+
+	if (!lst)
+		return ;
+	temp = lst;
+	lst = temp->next;
+	free (temp);
+	return ;
 }

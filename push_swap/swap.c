@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:48 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/07 11:33:57 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/08 15:59:26 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	swap(t_stack **stack)
 	temp = stack[0];
 	stack[0] = stack[1];
 	stack[1] = temp;
-	ft_printf("%s", stack);
 }
 
 void	sa(t_stack **stack_a)
