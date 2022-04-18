@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:08:09 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/08 17:01:54 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:52:44 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 void	rotate(t_stack **stack)
 {
 	t_stack	*temp;
+	int		x;
+
+	temp = stack[0];
+	x = -1;
+	while (stack[++x])
+		stack[x] = stack[x + 1]; 
+	stack[x] = temp;
 }
 
 void	ra(t_stack **stack_a)

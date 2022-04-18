@@ -3,33 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/08 16:43:01 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:02:38 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(t_stack **stack_a, int argc, char **argv)
+t_stack	*lstlast(t_stack *lst)
 {
-	t_stack	*node;
-	int		*temp;
-	int		i;
+	while (lst && lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
 
-	temp = malloc(sizeof(int) * (argc - 1));
-	if (!temp)
-		return ;
-	i = 0;
-	while (argv[++i])
-		temp[i - 1] = ft_atoi(argv[i]);
-	i = -1;
-	while (++i < (argc - 1))
+void	*lstadd_back(t_stack **stack, t_stack *node)
+{
+	t_stack	*last;
+
+	if (stack)
 	{
-		node = create_stack(temp[i]);
-		ft_lstadd_back(stack_a, node);
-		node = node->next;
+		if (*stack)
+		{
+			last = lstlast(*stack);
+			last->next = node;
+		}
+		else
+			*stack = node;
 	}
 }
 
@@ -58,4 +60,25 @@ void	del_one(t_list *lst)
 	lst = temp->next;
 	free (temp);
 	return ;
+}
+
+void	init_stack(t_stack **stack_a, int argc, char **argv)
+{
+	t_stack	*node;
+	int		*temp;
+	int		i;
+
+	temp = malloc(sizeof(int) * (argc - 1));
+	if (!temp)
+		return ;
+	i = 0;
+	while (argv[++i])
+		temp[i - 1] = ft_atoi(argv[i]);
+	i = -1;
+	while (++i < (argc - 1))
+	{
+		node = create_stack(temp[i]);
+		lstadd_back(stack_a, node);
+		node = node->next;
+	}
 }

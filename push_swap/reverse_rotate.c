@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:08:27 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/05 16:38:42 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:58:58 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 
 void	reverse_rotate(t_stack **stack)
 {
+	t_stack	*temp;
+	int		x;
 
+	x = 0;
+	while (stack[x])
+		x++;
+	temp = stack[x];
+	while (x >= 0)
+	{
+		stack[x] = stack[x - 1];
+		x--;
+	}
+	stack[x] = temp;
 }
 
 void	rra(t_stack **stack_a)
