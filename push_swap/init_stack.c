@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/18 16:02:38 by miguel           ###   ########.fr       */
+/*   Updated: 2022/04/19 12:29:09 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_stack	*lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	*lstadd_back(t_stack **stack, t_stack *node)
+void	lstadd_back(t_stack **stack, t_stack *node)
 {
 	t_stack	*last;
 
@@ -50,14 +50,14 @@ t_stack	*create_stack(int data)
 	return (head);
 }
 
-void	del_one(t_list *lst)
+void	del_one(t_stack **lst)
 {
-	t_list	*temp;
+	t_stack	*temp;
 
 	if (!lst)
 		return ;
-	temp = lst;
-	lst = temp->next;
+	temp = lst[0];
+	lst[0] = temp->next;
 	free (temp);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:14:53 by mibernar          #+#    #+#             */
-/*   Updated: 2022/01/26 15:27:29 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/19 12:41:24 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,4 @@ static void	write_numbers(long int n_value, char *str, int i)
 		n_value = n_value / 10;
 		i--;
 	}
-}
-
-char	*ft_itoa(int n)
-{
-	char		*str;
-	int			i;
-	long int	n_value;
-
-	n_value = n;
-	str = malloc(sizeof(char) * (lenght_int(n) + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	if (n_value == 0)
-		str[0] = '0';
-	if (n_value > 0)
-		i = lenght_int(n_value) - 1;
-	if (n_value < 0)
-	{
-		str[0] = '-';
-		n_value *= -1;
-		i = lenght_int(n_value);
-	}
-	write_numbers(n_value, str, i);
-	str[lenght_int(n)] = '\0';
-	return (str);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	x;
-
-	x = 0;
-	while (s[x] != '\0')
-		x++;
-	return (x);
 }

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/08 17:00:41 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/19 12:19:45 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack	lstadd_front(t_stack **lst, t_stack *new)
+{
+	t_stack	*element;
+
+	element = new;
+	element->next = *lst;
+	*lst = element;
+}
 
 void	push(t_stack **stack_1, t_stack **stack_2)
 {
@@ -20,7 +29,7 @@ void	push(t_stack **stack_1, t_stack **stack_2)
 	if (!stack_2)
 		return ;
 	temp = create_stack((*stack_2)->data);
-	ft_lstadd_front(stack_1, temp);
+	lstadd_front(stack_1, temp);
 	del_one(stack_2);
 }
 
