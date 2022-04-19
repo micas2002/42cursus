@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/19 12:19:45 by miguel           ###   ########.fr       */
+/*   Updated: 2022/04/19 14:47:34 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	lstadd_front(t_stack **lst, t_stack *new)
+void	lstadd_front(t_stack **lst, t_stack *new)
 {
 	t_stack	*element;
 
