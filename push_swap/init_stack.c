@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/19 14:46:24 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:51:18 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	del_one(t_stack **lst)
 void	init_stack(t_stack **stack_a, int argc, char **argv)
 {
 	t_stack	*node;
-	int		*temp;
+	int		**temp;
 	int		i;
 
 	temp = malloc(sizeof(int) * (argc - 1));

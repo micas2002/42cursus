@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/19 12:22:33 by miguel           ###   ########.fr       */
+/*   Updated: 2022/04/20 15:38:59 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ void	sb(t_stack **stack_b);
 void	ss(t_stack **stack_a, t_stack **stack_b);
 void	del_one(t_stack **lst);
 t_stack	*create_stack(int data);
+int		is_sorted(t_stack **stack);
+void	sort_3(t_stack **stack);
+void	sort_4(t_stack **stack_a, t_stack **stack_b);
 
 #endif
