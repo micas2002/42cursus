@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_p.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:39:08 by mibernar          #+#    #+#             */
-/*   Updated: 2022/02/02 12:20:01 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/21 11:22:15 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*convert(unsigned long quotient, char *hex_num)
 	return (hex_num);
 }
 
-char	*hexa_convert(unsigned long args)
+char	*hexa_convert(long args)
 {
 	unsigned long	quotient;
 	char			*hex_num;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/20 17:51:18 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/21 11:44:44 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,18 @@ void	del_one(t_stack **lst)
 void	init_stack(t_stack **stack_a, int argc, char **argv)
 {
 	t_stack	*node;
-	int		**temp;
+	int		*temp;
 	int		i;
 
-	temp = malloc(sizeof(int) * (argc - 1));
+	temp = malloc(sizeof(int) * (argc));
 	if (!temp)
 		return ;
 	i = 0;
 	while (argv[++i])
+	{
 		temp[i - 1] = ft_atoi(argv[i]);
+		printf("%i\n", temp[i]);
+	}
 	i = -1;
 	while (++i < (argc - 1))
 	{
