@@ -6,18 +6,18 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/20 15:41:58 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/25 15:27:07 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sorting(t_stack **stack_a, t_stack **stack_b, int argc)
+void	sorting(t_stack *stack_a, t_stack *stack_b, int argc)
 {
 	int	stack_size;
 
 	stack_size = (argc - 1);
-	if (is_sorted(stack_a) == 1)
+	if (is_sorted(stack_a) == 0)
 		return ;
 	if (stack_size == 2)
 		sa(stack_a);
@@ -29,8 +29,8 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, int argc)
 
 int	main(int argc, char **argv)
 {
-	t_stack	**stack_a;
-	t_stack	**stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (error_check(argc, argv) == 1)
 	{

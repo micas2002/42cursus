@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 15:27:12 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/21 11:21:04 by miguel           ###   ########.fr       */
+/*   Updated: 2022/04/23 12:35:05 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_stack **stack)
+int	is_sorted(t_stack *stack)
 {
-	int	x;
-
-	x = -1;
-	while (stack[++x])
+	while (stack)
 	{
-		if (stack[x] > stack [x + 1])
+		if (stack > stack->next)
 			return (0);
 	}
 	return (1);

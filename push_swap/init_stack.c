@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/21 11:44:44 by miguel           ###   ########.fr       */
+/*   Updated: 2022/04/25 16:13:06 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,18 @@ t_stack	*lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	lstadd_back(t_stack **stack, t_stack *node)
+t_stack	*lstadd_back(t_stack *stack, t_stack *node)
 {
 	t_stack	*last;
 
 	if (stack)
 	{
-		if (*stack)
-		{
-			last = lstlast(*stack);
-			last->next = node;
-		}
-		else
-			*stack = node;
+		last = lstlast(stack);
+		last->next = node;
 	}
+	else
+		last = node;
+	return (last);
 }
 
 t_stack	*create_stack(int data)
@@ -50,19 +48,7 @@ t_stack	*create_stack(int data)
 	return (head);
 }
 
-void	del_one(t_stack **lst)
-{
-	t_stack	*temp;
-
-	if (!lst)
-		return ;
-	temp = lst[0];
-	lst[0] = temp->next;
-	free (temp);
-	return ;
-}
-
-void	init_stack(t_stack **stack_a, int argc, char **argv)
+void	init_stack(t_stack *stack_a, int argc, char **argv)
 {
 	t_stack	*node;
 	int		*temp;
@@ -73,10 +59,7 @@ void	init_stack(t_stack **stack_a, int argc, char **argv)
 		return ;
 	i = 0;
 	while (argv[++i])
-	{
 		temp[i - 1] = ft_atoi(argv[i]);
-		printf("%i\n", temp[i]);
-	}
 	i = -1;
 	while (++i < (argc - 1))
 	{
