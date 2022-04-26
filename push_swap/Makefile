@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
+#    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/04/12 22:22:23 by miguel           ###   ########.fr        #
+#    Updated: 2022/04/26 14:38:00 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = push_swap.c error_check.c swap.c \
-	init_stack.c
+SRCS = error_check.c init_stack.c is_sorted.c push_swap.c \
+	push.c reverse_rotate.c rotate.c sorts_size.c swap.c
 
 OBJS = $(SRCS:.c=.o)
 

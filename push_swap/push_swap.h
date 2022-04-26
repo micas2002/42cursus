@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/25 16:06:00 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/26 14:57:37 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ typedef struct s_stack
 {
 	int				data;
 	struct s_stack	*next;
+	struct s_stack	*previous;
 }t_stack;
 
 int		error_check(int argc, char **argv);
-void	init_stack(t_stack *stack_a, int argc, char **argv);
+t_stack	*init_stack(int argc, char **argv);
 void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_a, t_stack *stack_b);
 void	ra(t_stack *stack_a);
@@ -42,7 +43,8 @@ void	rrr(t_stack *stack_a, t_stack *stack_b);
 void	sa(t_stack *stack_a);
 void	sb(t_stack *stack_b);
 void	ss(t_stack *stack_a, t_stack *stack_b);
-void	del_one(t_stack **lst);
+void	del_one(t_stack *stack);
+t_stack	*lstlast(t_stack *lst);
 t_stack	*create_stack(int data);
 int		is_sorted(t_stack *stack);
 void	sort_3(t_stack *stack);
