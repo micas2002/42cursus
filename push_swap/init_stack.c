@@ -6,13 +6,13 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/26 15:09:27 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/28 13:48:54 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	del_one(t_stack	*stack)
+void	lstadd_front()
 {
 	
 }
@@ -24,19 +24,18 @@ t_stack	*lstlast(t_stack *lst)
 	return (lst);
 }
 
-t_stack	*lstadd_back(t_stack *stack, t_stack *node)
+void	lstadd_back(t_stack **stack, t_stack *node)
 {
 	t_stack	*last;
 
-	if (stack)
+	if (*stack)
 	{
-		last = lstlast(stack);
+		last = lstlast(*stack);
 		last->next = node;
 		node->previous = last;
 	}
 	else
-		stack = node;
-	return (stack);
+		*stack = node;
 }
 
 t_stack	*create_stack(int data)
@@ -73,7 +72,7 @@ t_stack	*init_stack(int argc, char **argv)
 	while (++i < (argc - 1))
 	{
 		node = create_stack(temp[i]);
-		temp_stack = lstadd_back(temp_stack, node);
+		lstadd_back(&temp_stack, node);
 	}
 	return (temp_stack);
 }
