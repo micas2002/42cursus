@@ -6,15 +6,16 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/28 13:48:54 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/29 14:55:32 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	lstadd_front()
+void	lstadd_front(t_stack **stack_receiver, t_stack **stack_sender)
 {
-	
+	(*stack_sender)->next = (*stack_receiver);
+	stack_receiver = stack_sender;
 }
 
 t_stack	*lstlast(t_stack *lst)

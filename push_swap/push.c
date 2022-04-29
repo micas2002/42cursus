@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/28 13:49:02 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/29 10:46:48 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	push(t_stack **stack_receiver, t_stack **stack_sender)
 		lstadd_back(stack_receiver, node);
 	}
 	else
-		lstadd_front(stack);
-	del_one(stack_sender);
+		lstadd_front(stack_receiver, stack_sender);
+	// del_one(stack_sender);
 }
 
 void	pa(t_stack **stack_a, t_stack **stack_b)

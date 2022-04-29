@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/28 12:36:00 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/04/29 10:46:40 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);
 void	ss(t_stack **stack_a, t_stack **stack_b);
 void	lstadd_back(t_stack **stack, t_stack *node);
-void	del_one(t_stack **stack);
+void	lstadd_front(t_stack **stack_receiver, t_stack **stack_sender);
+// void	del_one(t_stack **stack);
 t_stack	*lstlast(t_stack *lst);
 t_stack	*create_stack(int data);
 int		is_sorted(t_stack *stack);
