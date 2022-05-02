@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:08:09 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/28 11:34:04 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/02 11:54:57 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	rotate(t_stack **stack)
 {
-	int	temp;
+	t_stack	*temp;
+	t_stack	*temp2;
 
-
-	*stack = lstlast(*stack);
-	temp = (*stack)->data;
-	while ((*stack)->previous != NULL)
-	{
-		(*stack)->data = (*stack)->previous->data;
-		*stack = (*stack)->previous;
-	}
-	(*stack)->data = temp;
+	temp = *stack;
+	temp2 = (*stack)->next;
+	while ((*stack)->next)
+		(*stack) = (*stack)->next;
+	temp->next = NULL;
+	(*stack)->next = temp;
+	*stack = temp2;
 }
 
 void	ra(t_stack **stack_a)

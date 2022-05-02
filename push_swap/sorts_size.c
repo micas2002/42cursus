@@ -6,22 +6,38 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 15:40:42 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/28 11:40:22 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/02 12:09:16 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_3(t_stack *stack)
+void	sort_3(t_stack *stack_a)
 {
-	if (stack->data > stack->next->next->data)
-		ra(&stack);
-	if (stack->data > stack->next->data)
-		sa(&stack);
-	if (stack->next->data > stack->next->next->data)
+	if (stack_a->data > stack_a->next->data)
 	{
-		rra(&stack);
-		sa(&stack);
+		if (stack_a->next->data > stack_a->next->next->data)
+		{
+			sa(&stack_a);
+			rra(&stack_a);
+		}
+		else
+		{
+			if (stack_a->data > stack_a->next->next->data)
+				ra(&stack_a);
+			else
+				sa(&stack_a);
+		}
+	}
+	else if (stack_a->data < stack_a->next->data)
+	{
+		if (stack_a->data > stack_a->next->next->data)
+			rra(&stack_a);
+		else if (stack_a->next->data > (stack_a->next->next->data))
+		{
+			rra(&stack_a);
+			sa(&stack_a);
+		}
 	}
 }
 
