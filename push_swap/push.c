@@ -6,24 +6,33 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/29 10:46:48 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:00:32 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	del_one(t_stack **stack_sender)
+{
+	t_stack	*temp;
+
+	temp = *stack_sender;
+	if (temp)
+		*stack_sender = temp->next;
+}
+
 void	push(t_stack **stack_receiver, t_stack **stack_sender)
 {
 	t_stack	*node;
 
-	if (!stack_receiver)
+	if (!(*stack_receiver))
 	{
 		node = create_stack((*stack_sender)->data);
 		lstadd_back(stack_receiver, node);
 	}
 	else
 		lstadd_front(stack_receiver, stack_sender);
-	// del_one(stack_sender);
+	del_one(stack_sender);
 }
 
 void	pa(t_stack **stack_a, t_stack **stack_b)

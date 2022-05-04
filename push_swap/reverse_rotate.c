@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:08:27 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/02 11:52:32 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:27:30 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	reverse_rotate(t_stack **stack)
 
 	*stack = lstlast(*stack);
 	temp = (*stack)->data;
-	while ((*stack)->previous != NULL)
+	while ((*stack)->previous)
 	{
 		(*stack)->data = (*stack)->previous->data;
 		*stack = (*stack)->previous;
 	}
+	*stack = (*stack)->next;
 	(*stack)->data = temp;
 }
 

@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/28 12:37:12 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/03 13:58:15 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	sorting(t_stack *stack_a, t_stack *stack_b, int argc)
 	if (stack_size == 2)
 		sa(&stack_a);
 	else if (stack_size == 3)
-		sort_3(stack_a);
+		sort_3(&stack_a);
 	else if (stack_size == 4)
-		sort_4(stack_a, stack_b);
+		sort_4(&stack_a, &stack_b);
 }
 
 int	main(int argc, char **argv)
