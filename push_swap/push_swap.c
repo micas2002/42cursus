@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/03 13:58:15 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:54:53 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 
 	if (error_check(argc, argv) == 1)
 	{
-		ft_printf("%s\n", "Error");
+		ft_putendl_fd("Error", 2);
 		return (0);
 	}
 	stack_a = NULL;

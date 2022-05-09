@@ -6,7 +6,7 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/04/26 14:38:00 by mibernar         ###   ########.fr        #
+#    Updated: 2022/05/09 16:09:40 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,21 +15,19 @@ SRCS = error_check.c init_stack.c is_sorted.c push_swap.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+CC = gcc -g
 RM = rm -rf
 CFLAGS = -Werror -Wextra -Wall
 LIBFT_DIR = libft
 PRINTF_DIR = printf
 
-NAME = pushswap.a
+NAME = pushswap
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	make -C $(PRINTF_DIR)
-	ar -rcs $(NAME) $(OBJS)
-	ranlib $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(INC) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS) $(INC)
@@ -37,12 +35,10 @@ $(OBJS): $(SRCS)
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(PRINTF_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFT_DIR)
-	make fclean -C $(PRINTF_DIR)
 
 re:	fclean all
 
