@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/04 16:01:04 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:55:07 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	lstadd_front(t_stack **stack_receiver, t_stack **stack_sender)
 {
-	(*stack_sender)->next = (*stack_receiver);
-	stack_receiver = stack_sender;
+	t_stack	*temp;
+
+	temp = *stack_sender;
+	(*stack_sender)->next = *stack_receiver;
+	*stack_receiver = *stack_sender;
+	*stack_sender = temp;
 }
 
 t_stack	*lstlast(t_stack *lst)
