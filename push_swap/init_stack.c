@@ -6,45 +6,11 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:02:29 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/11 16:14:32 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:28:24 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	lstadd_front(t_stack **stack_receiver, t_stack *stack_sender)
-{
-	if (!stack_sender)
-		return ;
-	if (!(*stack_receiver))
-	{
-		*stack_receiver = stack_sender;
-		return ;
-	}
-	stack_sender->next = *stack_receiver;
-	*stack_receiver = stack_sender;
-}
-
-t_stack	*lstlast(t_stack *lst)
-{
-	while (lst && lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-
-void	lstadd_back(t_stack **stack, t_stack *node)
-{
-	t_stack	*last;
-
-	if (*stack)
-	{
-		last = lstlast(*stack);
-		last->next = node;
-		node->previous = last;
-	}
-	else
-		*stack = node;
-}
 
 t_stack	*create_stack(int data)
 {
