@@ -6,7 +6,7 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/05/13 11:27:51 by mibernar         ###   ########.fr        #
+#    Updated: 2022/05/16 14:07:07 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,21 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJS) $(INC) -L$(LIBFT_DIR) -lft -o $(NAME)
+	make -C $(PRINTF_DIR)
+	$(CC) $(CFLAGS) $(OBJS) -L$(PRINTF_DIR) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) -c $(SRCS) $(INC)
+	$(CC) $(CFLAGS) -c $(SRCS)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(PRINTF_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFT_DIR)
+	make fclean -C $(PRINTF_DIR)
 
 re:	fclean all
 
