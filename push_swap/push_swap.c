@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/11 14:09:25 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/18 16:36:12 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void	sorting(t_stack *stack_a, t_stack *stack_b, int argc)
 		sort_4(&stack_a, &stack_b);
 	else if (stack_size == 5)
 		sort_5(&stack_a, &stack_b);
+	else
+	{
+		insertion_sort(&stack_a, &stack_b, argc);
+		while (stack_b)
+			pb (&stack_a, &stack_b);
+	}
 }
 
 int	main(int argc, char **argv)
