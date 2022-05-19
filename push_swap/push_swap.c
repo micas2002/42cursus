@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/19 10:53:47 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:32:31 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,26 @@
 // 	}
 // }
 
-void	sorting(t_stack *stack_a, t_stack *stack_b, int argc)
+void	sorting(t_stack **stack_a, t_stack **stack_b, int argc)
 {
 	int	stack_size;
 
 	stack_size = (argc - 1);
-	if (is_sorted(stack_a) == 1)
+	if (is_sorted(*stack_a) == 1)
 		return ;
 	if (stack_size == 2)
-		sa(&stack_a);
+		sa(stack_a);
 	else if (stack_size == 3)
-		sort_3(&stack_a);
+		sort_3(stack_a);
 	else if (stack_size == 4)
-		sort_4(&stack_a, &stack_b);
+		sort_4(stack_a, stack_b);
 	else if (stack_size == 5)
-		sort_5(&stack_a, &stack_b);
+		sort_5(stack_a, stack_b);
 	else
 	{
-		insertion_sort(stack_a, stack_b, argc);
+		insertion_sort(*stack_a, *stack_b, argc);
 		while (stack_b)
-			pb (&stack_a, &stack_b);
+			pb (stack_a, stack_b);
 	}
 }
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	stack_a = init_stack(argc, argv);
-	sorting(stack_a, stack_b, argc);
+	sorting(&stack_a, &stack_b, argc);
 //	print_stack(stack_a);
 	return (0);
 }

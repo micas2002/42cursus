@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 15:40:42 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/11 14:26:30 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:15:55 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 			{
 				if ((*stack_a)->data > (*stack_a)->next->next->next->next->data)
 				{
-					rra(stack_a);
+					ra(stack_a);
 					return ;
 				}
 				rra(stack_a);
