@@ -6,7 +6,7 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/05/18 16:23:36 by mibernar         ###   ########.fr        #
+#    Updated: 2022/05/19 10:31:42 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
+	make -C $(PRINTF_DIR)
 	$(CC) $(CFLAGS) $(OBJS) -L$(PRINTF_DIR) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJS): $(SRCS)

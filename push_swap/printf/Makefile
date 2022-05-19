@@ -6,7 +6,7 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 13:33:51 by mibernar          #+#    #+#              #
-#    Updated: 2022/03/31 12:36:11 by mibernar         ###   ########.fr        #
+#    Updated: 2022/05/19 10:33:19 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ NAME = libftprintf.a
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
 	ar -rcs $(NAME) $(OBJS)
 	ranlib $(NAME)
 
@@ -35,10 +34,8 @@ $(OBJS): $(SRCS)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
-	make clean -C $(LIBFT_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
-	make fclean -C $(LIBFT_DIR)
 
 re:	fclean all

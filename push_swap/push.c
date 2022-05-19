@@ -6,22 +6,11 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/16 11:13:14 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:21:31 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stack	*dup_stack(t_stack *temp, t_stack **stack)
-{
-	while ((*stack)->next)
-	{
-		temp->data = (*stack)->data;
-		temp = temp->next;
-		*stack = (*stack)->next;
-	}
-	return (temp);
-}
 
 void	push(t_stack **stack_receiver, t_stack **stack_sender)
 {
@@ -35,9 +24,8 @@ void	push(t_stack **stack_receiver, t_stack **stack_sender)
 	}
 	else
 	{
-		temp = NULL;
-		temp = dup_stack(temp, stack_sender);
-		lstadd_front(stack_receiver, stack_sender);
+		temp = *stack_sender;
+		lstadd_front(stack_receiver, temp);
 	}
 	del_one(stack_sender);
 }
