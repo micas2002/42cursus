@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:10:55 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/19 14:38:28 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:32:59 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int		is_sorted(t_stack *stack);
 void	sort_3(t_stack **stack);
 void	sort_4(t_stack **stack_a, t_stack **stack_b);
 void	sort_5(t_stack **stack_a, t_stack **stack_b);
-void	insertion_sort(t_stack *stack_a, t_stack *stack_b, int argc);
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b, int argc);
 
 #endif

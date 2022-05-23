@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:59 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/19 15:00:22 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:25:16 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	push(t_stack **stack_receiver, t_stack **stack_sender)
 	tmp = (*stack_sender);
 	(*stack_sender) = mem;
 	tmp->next = (*stack_receiver);
-	(*stack_receiver) = (tmp);
+	(*stack_receiver) = tmp;
 }
 
 void	pa(t_stack **stack_a, t_stack **stack_b)

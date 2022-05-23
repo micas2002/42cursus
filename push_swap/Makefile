@@ -6,7 +6,7 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/05/19 10:31:42 by mibernar         ###   ########.fr        #
+#    Updated: 2022/05/23 10:55:09 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS = -Werror -Wextra -Wall
 LIBFT_DIR = libft
 PRINTF_DIR = printf
 
-NAME = pushswap
+NAME = push_swap
 
 all: $(NAME)
 

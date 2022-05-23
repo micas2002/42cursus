@@ -6,51 +6,53 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:34:58 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/19 11:10:03 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:45:17 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_pos(t_stack *stack_a, int lowest_num)
+int	get_pos(t_stack *temp, int lowest_num)
 {
 	int	x;
 
 	x = 0;
-	while (stack_a->next)
+	while (temp->next)
 	{	
-		if (stack_a->data == lowest_num)
+		if (temp->data == lowest_num)
 			break ;
 		x++;
+		temp = temp->next;
 	}
 	return (x);
 }
 
-void	insertion_sort(t_stack *stack_a, t_stack *stack_b, int argc)
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b, int argc)
 {
-	int	lowest_num;
-	int	pos;
+	int		lowest_num;
+	int		pos;
 	t_stack	*temp;
 
-	if (!stack_a)
+	if (!*stack_a)
 		return ;
-	temp = stack_a;
-	lowest_num = stack_a->data;
-	while (temp->next)
+	temp = *stack_a;
+	lowest_num = (*stack_a)->data;
+	while (temp)
 	{
 		if (temp->data < lowest_num)
 			lowest_num = temp->data;
 		temp = temp->next;
 	}
-	pos = get_pos(stack_a, lowest_num);
+	temp = *stack_a;
+	pos = get_pos(temp, lowest_num);
 	if (pos <= (argc - 1) / 2)
 	{
-		while (stack_a->data != lowest_num)
-			ra(&stack_a);
+		while ((*stack_a)->data != lowest_num)
+			ra(stack_a);
 	}
 	else
-		while (stack_a->data != lowest_num)
-			rra(&stack_a);
-	pa(&stack_a, &stack_b);
+		while ((*stack_a)->data != lowest_num)
+			rra(stack_a);
+	pb(stack_a, stack_b);
 	insertion_sort(stack_a, stack_b, argc);
 }
