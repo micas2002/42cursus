@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/23 10:46:01 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:50:02 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (error_check(argc, argv) == 1)
+	if (error_check(argc, argv) == 0)
 	{
 		ft_putendl_fd("Error", 2);
 		return (0);

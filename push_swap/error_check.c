@@ -6,57 +6,104 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:59:19 by mibernar          #+#    #+#             */
-/*   Updated: 2022/04/19 14:58:06 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:47:58 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_duplicate(int argc, char **argv, int i)
+long int	long_atoi(const char *str)
 {
-	int	pos;
+	long int	x;
+	long int	a;
+	long int	sinal;
 
-	pos = 0;
-	while (pos <= argc)
+	sinal = 1;
+	a = 0;
+	x = 0;
+	while (str[x] != '\0' && (str[x] == ' ' || str[x] == 12
+			|| str[x] == 10 || str[x] == 13 || str[x] == 9 || str[x] == 11))
+		x++;
+	while (str[x] != '\0' && (str[x] == 43 || str[x] == 45))
 	{
-		if (ft_strncmp(argv[pos], argv[i], ft_strlen(argv[i]) == 0))
-			return (1);
-		pos++;
+		if (str[x + 1] == '+' || str[x + 1] == '-')
+			return (0);
+		else if (str[x] == '-')
+			sinal *= -1;
+		x++;
 	}
-	return (0);
+	while (str[x] > 47 && str[x] < 58)
+	{
+		a = (str[x] - '0') + (a * 10);
+		x++;
+	}
+	return (a * sinal);
 }
 
-int	check_int(char **argv, int i)
+int	check_duplicate(int argc, long int *x, int i)
 {
-	int	x;
+	int	j;
 
-	x = 0;
-	if (argv[i][x] == '+' || argv[i][x] == '-')
-		x++;
-	while (argv[i][x] != '\0')
+	j = 1;
+	i = 0;
+	while (i <= argc - 1)
 	{
-		if (argv[i][x] > 47 && argv[i][x] < 58)
-			x++;
-		else
-			return (1);
+		j = 1;
+		while (j + i < argc - 1)
+		{
+			if (x[j + i] == x[i])
+				return (0);
+			j++;
+		}
+		i++;
 	}
-	return (0);
+	return (1);
+}
+
+int	is_int(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_input(int argc, char **argv, long int *x)
+{
+	int	i;
+
+	i = 1;
+	while (argv[i])
+	{
+		if (is_int(argv[i]) == 0)
+			return (0);
+		x[i - 1] = long_atoi(argv[i]);
+		if (x[i - 1] > 2147483647 || x[i - 1] < -2147483648)
+			return (0);
+		i++;
+	}
+	if (check_duplicate(argc, x, i) == 0)
+		return (0);
+	return (1);
 }
 
 int	error_check(int argc, char **argv)
 {
-	int	i;
+	long int	*x;
 
-	if (argc < 2)
+	x = malloc(sizeof(int) * argc);
+	if (!x)
 		return (0);
-	i = 1;
-	while (i < argc)
-	{
-		if (check_int(argv, i) == 1)
-			return (1);
-		else if (check_duplicate(argc, argv, i) == 1)
-			return (1);
-		i++;
-	}
-	return (0);
+	if (check_input(argc, argv, x) == 0)
+		return (0);
+	free (x);
+	return (1);
 }
