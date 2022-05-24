@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:59:19 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/23 14:47:58 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:09:33 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	is_int(char *str)
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
+	if (!str[i])
+		return (0);
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')

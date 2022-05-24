@@ -6,23 +6,11 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/23 14:50:02 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:30:26 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	print_stack(t_stack *stack)
-// {
-// 	t_stack	*temp;
-
-// 	temp = stack;
-// 	while (temp != NULL)
-// 	{
-// 		printf("%d\n", temp->data);
-// 		temp = temp->next;
-// 	}
-// }
 
 void	sorting(t_stack **stack_a, t_stack **stack_b, int argc)
 {
@@ -61,6 +49,5 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	stack_a = init_stack(argc, argv);
 	sorting(&stack_a, &stack_b, argc);
-//	print_stack(stack_a);
 	return (0);
 }
