@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:59:19 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/24 11:09:33 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:42:11 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ int	error_check(int argc, char **argv)
 {
 	long int	*x;
 
-	x = malloc(sizeof(int) * argc);
+	x = malloc(sizeof(long int) * argc - 1);
 	if (!x)
 		return (0);
 	if (check_input(argc, argv, x) == 0)
+	{
+		free (x);
 		return (0);
+	}
 	free (x);
 	return (1);
 }

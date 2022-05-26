@@ -6,11 +6,25 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:09:06 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/24 12:30:26 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:48:12 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_stacks(t_stack **stack_a)
+{
+	t_stack	*temp;
+	t_stack	*memory;
+
+	temp = *stack_a;
+	while (temp)
+	{
+		memory = temp->next;
+		free(temp);
+		temp = memory;
+	}
+}
 
 void	sorting(t_stack **stack_a, t_stack **stack_b, int argc)
 {
@@ -28,11 +42,7 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, int argc)
 	else if (stack_size == 5)
 		sort_5(stack_a, stack_b);
 	else
-	{
-		insertion_sort(stack_a, stack_b, argc);
-		while (*stack_b)
-			pa(stack_a, stack_b);
-	}
+		radix_sort(stack_a, stack_b, argc);
 }
 
 int	main(int argc, char **argv)
@@ -49,5 +59,6 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	stack_a = init_stack(argc, argv);
 	sorting(&stack_a, &stack_b, argc);
+	free_stacks(&stack_a);
 	return (0);
 }

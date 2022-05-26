@@ -6,13 +6,13 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 16:11:00 by mibernar          #+#    #+#              #
-#    Updated: 2022/05/24 12:03:11 by mibernar         ###   ########.fr        #
+#    Updated: 2022/05/26 11:42:25 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = push_swap.c error_check.c init_stack.c is_sorted.c \
 	push.c reverse_rotate.c rotate.c sorts_size.c swap.c \
-	stack_utils.c insertion_sort.c
+	stack_utils.c radix_sort.c
 
 OBJS = $(SRCS:.c=.o)
 
