@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:07:48 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/24 12:21:18 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:32:41 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	swap(t_stack **stack)
 {
-	int	temp;
+	t_stack	*temp;
 
-	temp = (*stack)->data;
-	(*stack)->data = (*stack)->next->data;
-	(*stack)->next->data = temp;
+	temp = (*stack)->next;
+	(*stack)->next = temp->next;
+	temp->next = *stack;
+	*stack = temp;
 }
 
 void	sa(t_stack **stack_a)
