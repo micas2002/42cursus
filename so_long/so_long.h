@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/05/30 14:59:45 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:21:47 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,14 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }t_img;
+
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*window;
+}t_vars;
+
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		close_window(int key_code, t_vars *vars);
 
 #endif
