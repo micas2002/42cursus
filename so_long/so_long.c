@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:27:47 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/01 16:35:50 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:21:09 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	main(void)
 		x++;
 	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_hook(mlx_win, 2, 1L<<0, close_window, &vars);
+	mlx_hook(mlx_win, 2, (1L << 0), close_window, &vars);
 	mlx_loop(mlx);
 }

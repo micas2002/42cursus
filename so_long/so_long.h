@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/01 16:21:47 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:25:11 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <mlx.h>
+# include <X11/keysym.h>
 # include "printf/ft_printf.h"
 
 // PROTOTYPES
