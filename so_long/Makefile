@@ -6,7 +6,7 @@
 #    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/06/01 16:23:00 by mibernar         ###   ########.fr        #
+#    Updated: 2022/06/03 11:15:57 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ RM = rm -rf
 CFLAGS = -Werror -Wextra -Wall
 PRINTF_DIR = printf
 
-NAME = push_swap
+NAME = so_long
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(PRINTF_DIR)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -L$(PRINTF_DIR) -o $(NAME)
+	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
