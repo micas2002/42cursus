@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/03 10:53:33 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:49:17 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@
 
 // PROTOTYPES
 
-typedef struct s_img
+typedef struct	s_img
 {
-	void	*img;
+	void	*reference;
 	char	*address;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}t_img;
+	void      *pointer;
+	char      *pixels;
+	int       bits_per_pixel;
+	int       line_size;
+	int       endian;
+}   t_img;
 
 typedef struct s_vars
 {
@@ -39,6 +41,8 @@ typedef struct s_vars
 }t_vars;
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-int		close_window(int key_code, t_vars *vars);
+int		close_window(void);
+t_img	new_img(void *mlx, int width, int height);
+t_img	new_sprite(void *mlx, char *path);
 
 #endif
