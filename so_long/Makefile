@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
+#    By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/06/13 13:00:13 by miguel           ###   ########.fr        #
+#    Updated: 2022/06/15 08:13:05 by mibernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = so_long.c vars_utils.c
+SRCS = so_long.c vars_utils.c img_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -26,9 +26,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(PRINTF_DIR)
 #	mac
-#	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 #	linux
-	gcc -I minilibx-linux/ *.c -L minilibx-linux/ -lmlx_Linux -lXext -lX11 && ./a.out
+#	gcc -I minilibx-linux/ *.c -L minilibx-linux/ -lmlx_Linux -lXext -lX11 && ./a.out
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
