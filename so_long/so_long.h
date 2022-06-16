@@ -6,7 +6,7 @@
 /*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/15 10:14:08 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:43:22 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,29 @@
 
 // PROTOTYPES
 
+typedef struct s_img
+{
+	void	*ptr;
+	int		*data;
+	int		size_line;
+	int		bpp;
+	int		endian;
+}	t_img;
+
+typedef struct s_mlx
+{
+	void	*ptr;
+	void	*window;
+	t_img	img;
+	int		x;
+	int		y;
+}t_mlx;
+
 typedef struct s_vars
 {
 	void	*mlx;
 	void	*window;
-	int		x;
-	int		y;
 }t_vars;
-
-typedef struct s_img
-{
-	void	*reference;
-	t_vars	size;
-	char	*address;
-	void	*pointer;
-	char	*pixels;
-	int		bits_per_pixel;
-	int		line_size;
-	int		endian;
-}	t_img;
-
 
 // IMG_UTILS
 void	close_game(void *mlx_win);
@@ -51,6 +54,6 @@ int		close_window(void);
 // VARS_UTILS
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 t_img	new_img(void *mlx, int width, int height);
-t_img	new_sprite(void *mlx, char *path);
+t_img	new_sprite(void *mlx);
 
 #endif
