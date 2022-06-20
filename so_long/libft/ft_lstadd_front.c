@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_utils.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 13:03:30 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/20 14:15:21 by miguel           ###   ########.fr       */
+/*   Created: 2021/11/02 11:21:07 by mibernar          #+#    #+#             */
+/*   Updated: 2021/11/02 11:26:44 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char	*dst;
+	t_list	*element;
 
-	dst = data->ptr + (y * data->size_line
-			+ x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	element = new;
+	element->next = *lst;
+	*lst = element;
 }

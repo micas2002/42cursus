@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_utils.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 13:03:30 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/20 14:15:21 by miguel           ###   ########.fr       */
+/*   Created: 2021/10/22 12:41:57 by mibernar          #+#    #+#             */
+/*   Updated: 2021/11/15 17:27:34 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*dst;
+	void	*ptr;
 
-	dst = data->ptr + (y * data->size_line
-			+ x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

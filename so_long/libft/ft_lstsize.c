@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_utils.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 13:03:30 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/20 14:15:21 by miguel           ###   ########.fr       */
+/*   Created: 2021/11/02 11:40:36 by mibernar          #+#    #+#             */
+/*   Updated: 2021/11/02 11:43:49 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+int	ft_lstsize(t_list *lst)
 {
-	char	*dst;
+	int		i;
+	t_list	*x;
 
-	dst = data->ptr + (y * data->size_line
-			+ x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	i = 0;
+	x = lst;
+	while (x)
+	{
+		x = x->next;
+		i++;
+	}
+	return (i);
 }

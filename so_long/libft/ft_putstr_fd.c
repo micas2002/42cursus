@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_utils.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 13:03:30 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/20 14:15:21 by miguel           ###   ########.fr       */
+/*   Created: 2021/10/21 14:23:55 by mibernar          #+#    #+#             */
+/*   Updated: 2021/10/28 15:03:00 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*dst;
+	int	x;
 
-	dst = data->ptr + (y * data->size_line
-			+ x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	x = 0;
+	while (s[x] != '\0')
+	{
+		write(fd, &s[x], 1);
+		x++;
+	}
 }

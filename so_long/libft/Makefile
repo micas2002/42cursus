@@ -5,45 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/06/20 14:40:20 by miguel           ###   ########.fr        #
+#    Created: 2021/10/19 13:27:06 by mibernar          #+#    #+#              #
+#    Updated: 2022/06/20 14:34:28 by miguel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = so_long.c vars_utils.c img_utils.c
-
+SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
+	ft_isprint.c ft_memset.c ft_strdup.c ft_strlcat.c ft_strlen.c ft_strncmp.c \
+	ft_strnstr.c ft_strlcpy.c ft_toupper.c ft_tolower.c ft_putchar_fd.c ft_putnbr_fd.c \
+	ft_calloc.c ft_memchr.c ft_strchr.c ft_strrchr.c ft_memcmp.c ft_putstr_fd.c ft_memmove.c \
+	ft_strjoin.c ft_putendl_fd.c ft_substr.c ft_strtrim.c ft_memcpy.c ft_itoa.c ft_strmapi.c \
+	ft_striteri.c ft_split.c get_next_line.c
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc -g
-RM = rm -rf
-CFLAGS = -Werror -Wextra -Wall
-PRINTF_DIR = printf
-LIBFT_DIR = libft
+BONUS =	 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+	ft_lstclear.c ft_lstiter.c ft_lstmap.c
+BONUS_OBJS = $(BONUS:.c=.o)
 
-NAME = so_long
+CC = gcc
+RM = rm -rf
+CFLAGS = -Werror -Wextra -Wall 
+
+NAME = libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(PRINTF_DIR)
-	make -C $(LIBFT_DIR)
-#	mac
-#	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-#	linux
-	gcc -I minilibx-linux/ *.c -L minilibx-linux/ -lmlx_Linux -lXext -lX11 && ./a.out
+	ar -rcs $(NAME) $(OBJS)
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
-	make clean -C $(PRINTF_DIR)
-	make clean -C $(LIBFT_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
-	make fclean -C $(PRINTF_DIR)
-	make fclean -C $(LIBFT_DIR)
 
 re:	fclean all
 

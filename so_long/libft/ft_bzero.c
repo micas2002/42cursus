@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_utils.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 13:03:30 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/20 14:15:21 by miguel           ###   ########.fr       */
+/*   Created: 2021/10/19 11:20:36 by mibernar          #+#    #+#             */
+/*   Updated: 2021/11/15 17:16:31 by mibernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	ft_bzero(void *s, size_t n)
 {
-	char	*dst;
+	size_t	i;
 
-	dst = data->ptr + (y * data->size_line
-			+ x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(s + i) = '\0';
+		i++;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mibernar <mibernar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/16 14:43:22 by mibernar         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:27:05 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 # include <unistd.h>
 # include <string.h>
 # include <mlx.h>
+# include <math.h>
 # include "printf/ft_printf.h"
+# include "libft/libft.h"
+
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 900
 
 // PROTOTYPES
 
@@ -40,12 +45,6 @@ typedef struct s_mlx
 	int		x;
 	int		y;
 }t_mlx;
-
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*window;
-}t_vars;
 
 // IMG_UTILS
 void	close_game(void *mlx_win);
