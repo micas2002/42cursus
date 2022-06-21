@@ -6,16 +6,15 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/20 15:26:42 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:08:36 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main()
+int	main(void)
 {
 	t_mlx	mlx;
-
 
 	mlx.ptr = mlx_init();
 	mlx.window = mlx_new_window(mlx.ptr, WIN_WIDTH, WIN_HEIGHT, "game");
@@ -26,7 +25,8 @@ int	main()
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.ptr, &mlx.img.bpp,
 			&mlx.img.size_line, &mlx.img.endian);
 	mlx_put_image_to_window(mlx.ptr, mlx.window, mlx.img.ptr, 0, 0);
-	close_game(mlx.window);
+	mlx_key_hook(mlx.window, close_game, &mlx);
+	mlx_hook(mlx.window, 17, 0L, close_window, &mlx);
 	mlx_loop(mlx.ptr);
 	return (0);
 }

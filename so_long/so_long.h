@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/20 15:27:05 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:08:33 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <mlx.h>
 # include <math.h>
+# include <X11/keysym.h>
 # include "printf/ft_printf.h"
 # include "libft/libft.h"
 
@@ -27,6 +28,11 @@
 # define WIN_HEIGHT 900
 
 // PROTOTYPES
+
+typedef struct s_player
+{
+	
+}	t_player;
 
 typedef struct s_img
 {
@@ -47,12 +53,15 @@ typedef struct s_mlx
 }t_mlx;
 
 // IMG_UTILS
-void	close_game(void *mlx_win);
+int		close_game(int key_code);
 int		close_window(void);
 
 // VARS_UTILS
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 t_img	new_img(void *mlx, int width, int height);
 t_img	new_sprite(void *mlx);
+
+// MAP_UTILS
+int	check_map(int fd);
 
 #endif
