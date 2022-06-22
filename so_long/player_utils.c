@@ -6,13 +6,13 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:21:35 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/21 15:22:56 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/22 13:05:16 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int player_movements(t_mlx mlx)
-{
+// int player_movements(t_mlx mlx)
+// {
     
-}
+// }

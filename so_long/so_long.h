@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/21 16:08:33 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/22 14:52:18 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# include <mlx.h>
 # include <math.h>
-# include <X11/keysym.h>
+# include <mlx.h>
 # include "printf/ft_printf.h"
 # include "libft/libft.h"
 
@@ -58,8 +57,7 @@ int		close_window(void);
 
 // VARS_UTILS
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-t_img	new_img(void *mlx, int width, int height);
-t_img	new_sprite(void *mlx);
+void	new_sprite(t_mlx mlx, char *path, int x, int y);
 
 // MAP_UTILS
 int	check_map(int fd);

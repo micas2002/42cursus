@@ -6,31 +6,31 @@
 #    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/06/21 15:06:16 by miguel           ###   ########.fr        #
+#    Updated: 2022/06/22 15:15:51 by miguel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = so_long.c vars_utils.c img_utils.c 
+SRCS = so_long.c vars_utils.c img_utils.c map_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc -g
 RM = rm -rf
 CFLAGS = -Werror -Wextra -Wall
-PRINTF_DIR = printf
 LIBFT_DIR = libft
+PRINTF_DIR = printf
 
 NAME = so_long
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(PRINTF_DIR)
 	make -C $(LIBFT_DIR)
+	make -C $(PRINTF_DIR)
 #	mac
 #	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 #	linux
-	gcc -I minilibx-linux/ *.c -L minilibx-linux/ -lmlx_Linux -lXext -lX11 && ./a.out
+	$(CC) $(CFLAGS) $(OBJS) -L minilibx-linux/ -lmlx_Linux -lXext -lX11 -L$(PRINTF_DIR) -L$(LIBFT_DIR) -lft -o $(NAME) && ./so_long
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)

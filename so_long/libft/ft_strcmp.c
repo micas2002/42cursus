@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vars_utils.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 16:12:32 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/22 11:54:58 by miguel           ###   ########.fr       */
+/*   Created: 2022/06/22 12:40:02 by miguel            #+#    #+#             */
+/*   Updated: 2022/06/22 12:45:10 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-int	close_window(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	exit (0);
-	return (0);
+	unsigned int	x;
+
+	x = 0;
+	while ((unsigned char)s1[x] == (unsigned char)s2[x]
+		&& ((unsigned char)s1[x] != '\0'
+			&& (unsigned char)s2[x] != '\0'))
+		x++;
+	if ((unsigned char)s1[x] != (unsigned char)s2[x])
+		return (0);
+	return (1);
 }
-
-int	close_game(int key_code)
-{
-	if (key_code == 65307)
-		exit (0);
-	return (0);
-}   
