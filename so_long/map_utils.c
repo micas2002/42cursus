@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/22 16:08:02 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/23 16:15:40 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int	check_line(char *line)
 	int	x;
 	
 	x = 0;
-	while (line[x] != '\0')
+	while (line)
 	{
-		if (line[x] == '0' || line[x] == '1' || line[x] == 'C'
-				|| line[x] == 'E' || line[x] == 'P')
-				x++;
-		return (1);
+		if (line[x] != '0' && line[x] != '1' && line[x] != 'C' && line[x] != 'E' && line[x] != 'P')
+		{
+			if (line[x] == '\n' && line[x + 1] == '\0')
+				return (0);
+			return (1);
+		}
+		x++;
 	}
 	return (0);
 }
@@ -30,13 +33,11 @@ int	check_line(char *line)
 int	check_map(int fd)
 {
 	char	*line;
-	
+
 	line = get_next_line(fd);
-	printf("here\n");
-	if (!line)
-		return (0);
 	while (line)
 	{
+		printf("\n%s\n", line);
 		if (check_line(line) == 1)
 			return (0);
 		line = get_next_line(fd);

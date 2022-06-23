@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:03:03 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/22 12:39:27 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:30:30 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <fcntl.h>
 
 
 # define BUFFER_SIZE 1
@@ -60,6 +61,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*get_next_line(int fd);
+int		ft_strchr_int(const char *temp, int c);
 
 // BONUS
 
