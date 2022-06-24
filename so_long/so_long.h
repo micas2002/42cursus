@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/22 14:52:18 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:16:30 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	new_sprite(t_mlx mlx, char *path, int x, int y);
 
 // MAP_UTILS
-int	check_map(int fd);
+int		check_map(int fd);
+
+// PLAYER_UTILS
+int		player_movements(int key_code);
 
 #endif
