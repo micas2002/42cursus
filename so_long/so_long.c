@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/28 10:02:34 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/28 14:51:54 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	so_long(int fd)
 
 	if (check_map(fd) == 0)
 	{
-		ft_putendl_fd("INVALID MAP", 2);
+		ft_putendl_fd("ERROR\nINVALID MAP", 2);
 		return ;
 	}
 	mlx.ptr = mlx_init();
