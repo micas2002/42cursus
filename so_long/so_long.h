@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/24 14:16:30 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/27 10:12:15 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "printf/ft_printf.h"
 # include "libft/libft.h"
 
-# define WIN_WIDTH 900
-# define WIN_HEIGHT 900
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 600
 
 // PROTOTYPES
 

@@ -6,17 +6,36 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/24 13:46:18 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/28 14:43:51 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_line(char *line)
+int	check_borders(char *line)
 {
 	int	x;
 
 	x = 0;
+	while (line && line[x] != '\n')
+	{
+		if (line[x] == '1')
+			x++;
+		else
+			return (0);
+	}
+	if ((line[x] == '\n' && line[x + 1] == 0) || line[x] == '\0')
+		return (1);
+	return (0);
+}
+
+int	check_line_content(char *line, size_t first_line_size)
+{
+	int	x;
+
+	x = 0;
+	if (ft_strlen(line) != first_line_size)
+		return (0);
 	while (line)
 	{
 		if (line[x] != '0' && line[x] != '1'
@@ -31,21 +50,20 @@ int	check_line(char *line)
 	return (0);
 }
 
-int	check_map(int fd)
+int	check_map_loop(int fd, char *line, size_t first_line_size)
 {
-	char	*line;
-	size_t	first_line_size;
 	int		p;
 	int		c;
 	int		e;
+	char	*last_line;
 
 	line = get_next_line(fd);
-	first_line_size = ft_strlen(line);
 	while (line)
 	{
-		if (check_line(line) == 1)
+		last_line = line;
+		if (line[0] != '1' || line[first_line_size - 2] != '1')
 			return (0);
-		if (ft_strlen(line) != first_line_size)
+		if (check_line_content(line, first_line_size) == 1)
 			return (0);
 		if (ft_strchr_gnl(line, 'P') == 1)
 			p++;
@@ -55,7 +73,21 @@ int	check_map(int fd)
 			e++;
 		line = get_next_line(fd);
 	}
-	if (c == 0 || e == 0 || p == 0)
+	if (c == 0 || e == 0 || p == 0 || check_borders(last_line) == 0)
+		return (0);
+	return (1);
+}
+
+int	check_map(int fd)
+{
+	char	*line;
+	size_t	first_line_size;
+
+	line = get_next_line(fd);
+	if (check_borders(line) == 0)
+		return (0);
+	first_line_size = ft_strlen(line);
+	if (check_map_loop(fd, line, first_line_size) == 0)
 		return (0);
 	return (1);
 }
