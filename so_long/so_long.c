@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/28 14:51:54 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/29 16:33:36 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,30 @@ void	so_long(int fd)
 	mlx_loop(mlx.ptr);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	int	fd;
+	char	*path;
+	int		fd;
+	int		x;
 
-	fd = open("/home/miguel/projects/42cursus/so_long/map.ber", O_RDONLY);
+	path = argv[1];
+	if (argc != 2)
+		return (0);
+	x = 0;
+	while (path[x])
+	{
+		if (path[x] == '.' && path[x + 1] == 'b'
+			&& path[x + 2] == 'e' && path[x + 3] == 'r')
+			if (path[x + 4] == '\0')
+				break ;
+		x++;
+	}
+	if (path[x] == '\0')
+	{
+		ft_putendl_fd("ERROR\nINVALID FILE TYPE", 2);
+		return (0);
+	}
+	fd = open(path, O_RDONLY);
 	so_long(fd);
 	return (0);
 }

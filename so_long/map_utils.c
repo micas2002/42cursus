@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/28 14:43:51 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/29 15:51:50 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,14 @@ int	check_map_loop(int fd, char *line, size_t first_line_size)
 	int		e;
 	char	*last_line;
 
-	line = get_next_line(fd);
+	p = 0;
+	c = 0;
+	e = 0;
 	while (line)
 	{
 		last_line = line;
-		if (line[0] != '1' || line[first_line_size - 2] != '1')
-			return (0);
-		if (check_line_content(line, first_line_size) == 1)
+		if (line[0] != '1' || line[first_line_size - 2] != '1'
+			|| check_line_content(line, first_line_size) == 1)
 			return (0);
 		if (ft_strchr_gnl(line, 'P') == 1)
 			p++;
@@ -87,6 +88,7 @@ int	check_map(int fd)
 	if (check_borders(line) == 0)
 		return (0);
 	first_line_size = ft_strlen(line);
+	line = get_next_line(fd);
 	if (check_map_loop(fd, line, first_line_size) == 0)
 		return (0);
 	return (1);

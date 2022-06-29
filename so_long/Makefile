@@ -6,7 +6,7 @@
 #    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/06/24 14:08:47 by miguel           ###   ########.fr        #
+#    Updated: 2022/06/29 16:01:29 by miguel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ $(NAME): $(OBJS)
 #	mac
 #	$(CC) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 #	linux
-	$(CC) $(CFLAGS) $(OBJS) -L minilibx-linux/ -lmlx_Linux -lXext -lX11 -L$(PRINTF_DIR) -L$(LIBFT_DIR) -lft -o $(NAME) && ./so_long
+	$(CC) $(CFLAGS) $(OBJS) -L minilibx-linux/ -lmlx_Linux -lXext -lX11 -L$(PRINTF_DIR) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJS): $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
