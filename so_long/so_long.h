@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/27 10:12:15 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/30 16:35:48 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_mlx
 	int		y;
 }t_mlx;
 
-// IMG_UTILS
-int		close_game(int key_code);
+// VARS_UTILS
+int		keys(int key_code);
 int		close_window(void);
 
-// VARS_UTILS
+// IMG_UTILS
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	new_sprite(t_mlx mlx, char *path, int x, int y);
 

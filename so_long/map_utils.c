@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/29 15:51:50 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/30 16:28:08 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_borders(char *line)
 		else
 			return (0);
 	}
-	if ((line[x] == '\n' && line[x + 1] == 0) || line[x] == '\0')
+	if ((line[x] == '\n' && line[x + 1] == '\0') || line[x] == '\0')
 		return (1);
 	return (0);
 }

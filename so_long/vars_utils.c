@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:12:32 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/24 13:51:08 by miguel           ###   ########.fr       */
+/*   Updated: 2022/06/30 15:42:52 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ int	close_window(void)
 	return (0);
 }
 
-int	close_game(int key_code)
+int	keys(int key_code)
 {
 	if (key_code == 65307)
 		exit (0);
+	else if (key_code == 119 || key_code == 97 || key_code == 115
+		|| key_code == 100)
+		player_movements(key_code);
 	return (0);
 }
