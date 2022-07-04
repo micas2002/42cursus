@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:21:35 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/30 16:22:05 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:03:22 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	move_up(t_mlx mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.img.ptr);
+	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
 }
 
 void	move_down(t_mlx mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.img.ptr);
+	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
 }
 
 void	move_left(t_mlx mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.img.ptr);
+	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
 }
 
 void	move_right(t_mlx mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.img.ptr);
+	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
 }
 
 int	player_movements(int key_code)

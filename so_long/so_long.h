@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/06/30 16:35:48 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:14:35 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,39 @@
 # define WIN_HEIGHT 600
 
 // PROTOTYPES
-
-typedef struct s_player
-{
-	
-}	t_player;
-
-typedef struct s_img
+typedef struct s_bgd
 {
 	void	*ptr;
 	int		*data;
 	int		size_line;
 	int		bpp;
 	int		endian;
-}	t_img;
+}t_bgd;
+
+typedef struct s_player_img
+{
+	void	*ptr;
+	int		*data;
+	int		size_line;
+	int		bpp;
+	int		endian;
+}t_player_img;
+
+typedef struct s_map
+{
+	int	with;
+	int	heigth;
+}t_map;
 
 typedef struct s_mlx
 {
-	void	*ptr;
-	void	*window;
-	t_img	img;
-	int		x;
-	int		y;
+	void			*ptr;
+	void			*window;
+	t_map			map;
+	t_player_img	plr_img;
+	t_bgd			bgd;
+	int				x;
+	int				y;
 }t_mlx;
 
 // VARS_UTILS
@@ -56,7 +67,7 @@ int		keys(int key_code);
 int		close_window(void);
 
 // IMG_UTILS
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+//void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	new_sprite(t_mlx mlx, char *path, int x, int y);
 
 // MAP_UTILS

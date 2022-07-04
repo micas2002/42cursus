@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/06/30 16:28:08 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:29:33 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	check_map_loop(int fd, char *line, size_t first_line_size)
 	int		c;
 	int		e;
 	char	*last_line;
+	int		size;
 
 	p = 0;
 	c = 0;
@@ -72,24 +73,28 @@ int	check_map_loop(int fd, char *line, size_t first_line_size)
 			c++;
 		if (ft_strchr_gnl(line, 'E') == 1)
 			e++;
+		size++;
 		line = get_next_line(fd);
 	}
 	if (c == 0 || e == 0 || p == 0 || check_borders(last_line) == 0)
 		return (0);
-	return (1);
+	return (size);
 }
 
 int	check_map(int fd)
 {
 	char	*line;
 	size_t	first_line_size;
+	t_mlx	mlx;
 
 	line = get_next_line(fd);
 	if (check_borders(line) == 0)
 		return (0);
 	first_line_size = ft_strlen(line);
+	mlx.map.with = first_line_size;
 	line = get_next_line(fd);
 	if (check_map_loop(fd, line, first_line_size) == 0)
 		return (0);
+	mlx.map.heigth = check_map_loop(fd, line, first_line_size) + 2;
 	return (1);
 }
