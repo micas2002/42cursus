@@ -6,35 +6,35 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:21:35 by miguel            #+#    #+#             */
-/*   Updated: 2022/07/04 16:03:22 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/08 12:26:09 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	move_up(t_mlx mlx)
+/*
+void	move_up(t_game mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
+    
 }
 
-void	move_down(t_mlx mlx)
+void	move_down(t_game mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
+
 }
 
-void	move_left(t_mlx mlx)
+void	move_left(t_game mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
+
 }
 
-void	move_right(t_mlx mlx)
+void	move_right(t_game mlx)
 {
-	mlx_destroy_image(mlx.ptr, mlx.plr_img.ptr);
+
 }
 
 int	player_movements(int key_code)
 {
-	t_mlx	mlx;
+	t_game	mlx;
 
 	if (key_code == 119)
 		move_up(mlx);
@@ -46,3 +46,4 @@ int	player_movements(int key_code)
 		move_right(mlx);
 	return (0);
 }
+*/

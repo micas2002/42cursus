@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/04 16:22:22 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:40:26 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 void	so_long(int fd)
 {
-	t_mlx	mlx;
+	t_game	mlx;
 
 	if (check_map(fd) == 0)
 	{
 		ft_putendl_fd("ERROR\nINVALID MAP", 2);
 		return ;
 	}
-	mlx.ptr = mlx_init();
-	mlx.window = mlx_new_window(mlx.ptr, mlx.map.with, mlx.map.heigth, "game");
-	new_sprite(mlx, "./space.xpm", 0, 0);
-	new_sprite(mlx, "./character.xpm", 400, 400);
+	mlx.mlx_ptr = mlx_init();
+	mlx.window = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "game");
+	open_imgs(&mlx);
 	mlx_key_hook(mlx.window, keys, &mlx);
 	mlx_hook(mlx.window, 17, 0L, close_window, &mlx);
-	mlx_loop(mlx.ptr);
+	mlx_loop(mlx.mlx_ptr);
 }
 
 int	main(int argc, char **argv)

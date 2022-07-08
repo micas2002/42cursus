@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/07/04 16:29:33 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:19:56 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,18 @@ int	check_line_content(char *line, size_t first_line_size)
 	return (0);
 }
 
-int	check_map_loop(int fd, char *line, size_t first_line_size)
+int	check_map_loop(int fd, char *line, size_t first_line_size, t_game map)
 {
 	int		p;
 	int		c;
 	int		e;
+    int     x;
 	char	*last_line;
-	int		size;
 
 	p = 0;
 	c = 0;
 	e = 0;
+    x = 0;
 	while (line)
 	{
 		last_line = line;
@@ -73,28 +74,28 @@ int	check_map_loop(int fd, char *line, size_t first_line_size)
 			c++;
 		if (ft_strchr_gnl(line, 'E') == 1)
 			e++;
-		size++;
 		line = get_next_line(fd);
+        map.map_tiles[x++] = line;
 	}
 	if (c == 0 || e == 0 || p == 0 || check_borders(last_line) == 0)
 		return (0);
-	return (size);
+	return (1);
 }
 
 int	check_map(int fd)
 {
+    t_game  map;
+
 	char	*line;
 	size_t	first_line_size;
-	t_mlx	mlx;
 
 	line = get_next_line(fd);
 	if (check_borders(line) == 0)
 		return (0);
 	first_line_size = ft_strlen(line);
-	mlx.map.with = first_line_size;
 	line = get_next_line(fd);
-	if (check_map_loop(fd, line, first_line_size) == 0)
+    map.map_tiles[0] = line;
+	if (check_map_loop(fd, line, first_line_size, map) == 0)
 		return (0);
-	mlx.map.heigth = check_map_loop(fd, line, first_line_size) + 2;
 	return (1);
 }

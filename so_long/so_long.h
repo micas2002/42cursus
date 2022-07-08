@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/04 16:14:35 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:20:23 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,52 +23,43 @@
 # include "printf/ft_printf.h"
 # include "libft/libft.h"
 
-# define WIN_WIDTH 600
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 975
+# define WIN_HEIGHT 375
 
 // PROTOTYPES
-typedef struct s_bgd
-{
-	void	*ptr;
-	int		*data;
-	int		size_line;
-	int		bpp;
-	int		endian;
-}t_bgd;
 
-typedef struct s_player_img
+typedef struct s_player
 {
-	void	*ptr;
-	int		*data;
-	int		size_line;
-	int		bpp;
-	int		endian;
-}t_player_img;
+	void    *player_img;
+}	t_player;
 
-typedef struct s_map
+typedef struct s_vector
 {
-	int	with;
-	int	heigth;
-}t_map;
+	int	x;
+	int	y;
+}t_vector;
 
-typedef struct s_mlx
+typedef struct s_img
 {
-	void			*ptr;
-	void			*window;
-	t_map			map;
-	t_player_img	plr_img;
-	t_bgd			bgd;
-	int				x;
-	int				y;
-}t_mlx;
+    t_vector    pos;
+}t_img;
+
+typedef struct s_game
+{
+	void		*mlx_ptr;
+	void		*window;
+	t_vector	window_size;
+    t_vector    img_size;
+    t_player    player_img;
+    t_img       **map_tiles;
+}t_game;
+
+// SO_LONG
+void    open_imgs(t_game *mlx);
 
 // VARS_UTILS
 int		keys(int key_code);
 int		close_window(void);
-
-// IMG_UTILS
-//void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void	new_sprite(t_mlx mlx, char *path, int x, int y);
 
 // MAP_UTILS
 int		check_map(int fd);

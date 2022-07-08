@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vars_utils.c                                       :+:      :+:    :+:   */
+/*   open_imgs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 16:12:32 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/08 12:58:35 by miguel           ###   ########.fr       */
+/*   Created: 2022/07/08 11:07:42 by miguel            #+#    #+#             */
+/*   Updated: 2022/07/08 11:46:49 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(void)
+void    open_players(t_game *mlx)
 {
-	exit (0);
-	return (0);
+    mlx->player_img.player_img = mlx_xpm_file_to_image(mlx->mlx_ptr,
+        "./character.xpm", &mlx->img_size.x, &mlx->img_size.y);
 }
 
-int	keys(int key_code)
+void    open_imgs(t_game *mlx)
 {
-	if (key_code == 65307)
-		exit (0);
-/*	else if (key_code == 119 || key_code == 97 || key_code == 115
-		|| key_code == 100)
-		player_movements(key_code);
-*/	return (0);
+//    open_walls(mlx);
+//   open_floor(mlx);
+    open_players(mlx);
+//   open_colectibles(mlx);
+//  open_doors(mlx);
 }
