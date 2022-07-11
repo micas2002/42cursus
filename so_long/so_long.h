@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/11 11:59:45 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/11 18:36:19 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define WIN_WIDTH 975
 # define WIN_HEIGHT 375
+# define PATH "/home/miguel/projects/42cursus/so_long/map.ber"
 
 // PROTOTYPES
 
@@ -44,6 +45,7 @@ typedef struct s_map_info
     int player;
     int exit;
     int collectible;
+    int true_false;
     t_vector size;
 }t_map_info;
 
