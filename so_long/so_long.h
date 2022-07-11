@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/08 15:20:23 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/11 11:59:45 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_vector
 	int	y;
 }t_vector;
 
+typedef struct s_map_info
+{
+    int player;
+    int exit;
+    int collectible;
+    t_vector size;
+}t_map_info;
+
 typedef struct s_img
 {
     t_vector    pos;
@@ -51,7 +59,7 @@ typedef struct s_game
 	t_vector	window_size;
     t_vector    img_size;
     t_player    player_img;
-    t_img       **map_tiles;
+    char       **map_tiles;
 }t_game;
 
 // SO_LONG
