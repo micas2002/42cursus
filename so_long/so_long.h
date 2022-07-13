@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/11 18:36:19 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/13 12:46:45 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ typedef struct s_player
 	void    *player_img;
 }	t_player;
 
+typedef struct s_wall
+{
+	void    *wall_img;
+}	t_wall;
+
+typedef struct s_exit
+{
+	void    *exit_img;
+}	t_exit;
+
+typedef struct s_floor
+{
+	void    *floor_img;
+}	t_floor;
+
+typedef struct s_col
+{
+	void    *col_img;
+}	t_col;
+
 typedef struct s_vector
 {
 	int	x;
@@ -49,10 +69,10 @@ typedef struct s_map_info
     t_vector size;
 }t_map_info;
 
-typedef struct s_img
+typedef struct s_tile
 {
     t_vector    pos;
-}t_img;
+}t_tile;
 
 typedef struct s_game
 {
@@ -61,10 +81,15 @@ typedef struct s_game
 	t_vector	window_size;
     t_vector    img_size;
     t_player    player_img;
+    t_wall      wall_img;
+    t_exit      exit_img;
+    t_floor     floor_img;
+    t_col       col_img;
     char       **map_tiles;
 }t_game;
 
-// SO_LONG
+// INIT_GAME
+int    init_game(t_game mlx);
 void    open_imgs(t_game *mlx);
 
 // VARS_UTILS
@@ -76,5 +101,8 @@ int		check_map(int fd);
 
 // PLAYER_UTILS
 int		player_movements(int key_code);
+
+// RENDER
+void    put_tiles(t_game mlx);
 
 #endif

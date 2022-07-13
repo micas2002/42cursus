@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/11 15:46:14 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/13 11:52:34 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	so_long(int fd)
 	mlx_hook(mlx.window, 17, 0L, close_window, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 }
-
 int	main(int argc, char **argv)
 {
 	char	*path;
