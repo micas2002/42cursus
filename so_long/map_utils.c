@@ -6,18 +6,18 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/07/12 11:30:40 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:53:15 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_borders(char **map, int y, t_map_info data)
+int check_borders(char **map, int y, t_game *mlx)
 {
     int x;
     
     x = 0;
-    if (y == data.size.y || y == 0)
+    if (y == mlx->map_info.size.y || y == 0)
     {
         while (map[y][x] && map[y][x] != '\n')
         {
@@ -29,7 +29,7 @@ int check_borders(char **map, int y, t_map_info data)
     }
     else
     {
-        if (map[y][0] == '1' && map[y][data.size.x - 1] == '1')
+        if (map[y][0] == '1' && map[y][mlx->map_info.size.x - 1] == '1')
             x++;
         else
             return (0);
@@ -37,35 +37,36 @@ int check_borders(char **map, int y, t_map_info data)
     return (1);
 }
 
-t_map_info check_tile(char **map, int x, int y, t_map_info data)
+void check_tile(char **map, int x, int y, t_game *mlx)
 {
     char    c;
 
     c = map[y][x];
     if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P')
-        data.true_false = 0;
+        mlx->map_info.true_false = 0;
     if (c == 'P')
-        data.player = 1;
+        mlx->map_info.player = 1;
     if (c == 'E')
-        data.exit = 1;
+        mlx->map_info.exit = 1;
     if (c == 'C')
-        data.collectible = 1;
-    return (data);
+        mlx->map_info.collectible = 1;
+    return ;
 }
 
-t_map_info  get_map_data(char **map)
+void  get_map_data(char **map, t_game *mlx)
 {
-    t_map_info  data;
     int         x;
 
-    data.size.x = ft_strlen(map[0]) - 1;
-    x = -1;
-    while (map[++x])
-        data.size.y++;
-    data.player = 0;
-    data.exit = 0;
-    data.collectible = 0;
-    return (data);
+    mlx->map_info.size.x = ft_strlen(map[0]) - 1;
+    x = 0;
+    while (map[x])
+        x++;
+    mlx->map_info.size.y = x;
+    mlx->map_info.player = 0;
+    mlx->map_info.exit = 0;
+    mlx->map_info.collectible = 0;
+    mlx->map_info.true_false = 1;
+    return ;
 }
 
 int number_lines(int fd)
@@ -92,9 +93,8 @@ int number_lines(int fd)
 	return (linecount);
 }
 
-int	check_map(int fd)
+int	check_map(int fd, t_game *mlx)
 {
-    t_map_info  data;
     char  **map;
     int     x;
     int     y;
@@ -106,25 +106,26 @@ int	check_map(int fd)
     fd = open(PATH, O_RDONLY);
     while (++x != lines)
         map[x] = get_next_line(fd);
-    data = get_map_data(map);
+    mlx->map_tiles = map;
+    get_map_data(map, mlx);
     y = 0;
     while (map[y])
     {
-        if ((int)ft_strlen(map[y]) != data.size.x + 1)
+        if ((int)ft_strlen(map[y]) != mlx->map_info.size.x + 1)
             return (0);
         x = 0;
         while (map[y][x] && map[y][x] != '\n')
         {
-            data = check_tile(map, x, y, data);
-            if (data.true_false == 0)
+            check_tile(map, x, y, mlx);
+            if (mlx->map_info.true_false == 0)
                 return (0);
             x++;
         }
-        if (check_borders(map, y, data) == 0)
+        if (check_borders(map, y, mlx) == 0)
             return (0);
         y++;
     }
-    if (data.collectible == 0 || data.exit == 0 || data.exit == 0)
+    if (mlx->map_info.collectible == 0 || mlx->map_info.exit == 0 || mlx->map_info.exit == 0)
         return (0);
     return (1);
 }

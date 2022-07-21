@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/13 11:52:34 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:23:17 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	so_long(int fd)
 {
 	t_game	mlx;
 
-	if (check_map(fd) == 0)
+	if (check_map(fd, &mlx) == 0)
 	{
 		ft_putendl_fd("ERROR\nINVALID MAP", 2);
 		return ;
@@ -24,6 +24,7 @@ void	so_long(int fd)
 	mlx.mlx_ptr = mlx_init();
 	mlx.window = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "game");
 	open_imgs(&mlx);
+    put_tiles(mlx);
 	mlx_key_hook(mlx.window, keys, &mlx);
 	mlx_hook(mlx.window, 17, 0L, close_window, &mlx);
 	mlx_loop(mlx.mlx_ptr);
