@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/21 18:01:22 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:26:31 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include "printf/ft_printf.h"
 # include "libft/libft.h"
 
-# define WIN_WIDTH 975
-# define WIN_HEIGHT 600
 # define PATH "/home/miguel/projects/42cursus/so_long/map.ber"
 
 // PROTOTYPES
@@ -63,6 +61,8 @@ typedef struct s_vector
 typedef struct s_map_info
 {
     int player;
+    int p_pos_x;
+    int p_pos_y;
     int exit;
     int collectible;
     int true_false;

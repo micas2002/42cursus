@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:53:24 by miguel            #+#    #+#             */
-/*   Updated: 2022/07/21 17:53:15 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:29:37 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ void check_tile(char **map, int x, int y, t_game *mlx)
     if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P')
         mlx->map_info.true_false = 0;
     if (c == 'P')
+    {
         mlx->map_info.player = 1;
+        mlx->map_info.p_pos_x = x;
+        mlx->map_info.p_pos_y = y;
+    }
     if (c == 'E')
         mlx->map_info.exit = 1;
     if (c == 'C')

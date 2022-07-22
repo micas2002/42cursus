@@ -6,11 +6,12 @@
 #    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/07/21 16:39:16 by miguel           ###   ########.fr        #
+#    Updated: 2022/07/22 16:45:37 by miguel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = so_long.c vars_utils.c map_utils.c player_utils.c open_imgs.c render.c
+
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc -g
