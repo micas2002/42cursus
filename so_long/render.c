@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:08:27 by miguel            #+#    #+#             */
-/*   Updated: 2022/07/21 18:00:56 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:02:29 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void    put_tiles(t_game mlx)
         {
             if (mlx.map_tiles[x][y] == 'P')
                 mlx_put_image_to_window(mlx.mlx_ptr, mlx.window,
-			        mlx.player_img.player_img, (x * 64), (y * 64));
+			        mlx.player_img.player_img, (y * 64), (x * 64));
             else if (mlx.map_tiles[x][y] == 'C')
                  mlx_put_image_to_window(mlx.mlx_ptr, mlx.window,
-			        mlx.col_img.col_img, (x * 64), (y * 64));
+			        mlx.col_img.col_img, (y * 64), (x * 64));
             else if (mlx.map_tiles[x][y] == 'E')
                  mlx_put_image_to_window(mlx.mlx_ptr, mlx.window,
-			        mlx.exit_img.exit_img, (x * 64), (y * 64));
+			        mlx.exit_img.exit_img, (y * 64), (x * 64));
             else if (mlx.map_tiles[x][y] == '1')
                  mlx_put_image_to_window(mlx.mlx_ptr, mlx.window,
-			        mlx.wall_img.wall_img, (x * 64), (y * 64));
+			        mlx.wall_img.wall_img, (y * 64), (x * 64));
             else if (mlx.map_tiles[x][y] == '0')
                  mlx_put_image_to_window(mlx.mlx_ptr, mlx.window,
-			        mlx.floor_img.floor_img, (x * 64), (y * 64));
+			        mlx.floor_img.floor_img, (y * 64), (x * 64));
             y++;
         }
         x++;

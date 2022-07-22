@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/21 17:23:17 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:05:06 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	so_long(int fd)
 		return ;
 	}
 	mlx.mlx_ptr = mlx_init();
-	mlx.window = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "game");
+	mlx.window = mlx_new_window(mlx.mlx_ptr, (mlx.map_info.size.x * 64), 
+            (mlx.map_info.size.y * 64), "game");
 	open_imgs(&mlx);
     put_tiles(mlx);
 	mlx_key_hook(mlx.window, keys, &mlx);
