@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/22 16:26:31 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/26 17:27:51 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,19 @@ typedef struct s_map_info
     t_vector size;
 }t_map_info;
 
+typedef enum s_type
+{
+    FLOOR = '0',
+	WALL = '1',
+	COLLECTABLE = 'C',
+	PLAYER = 'P',
+	EXIT = 'E',
+}t_type;
+
 typedef struct s_tile
 {
     t_vector    pos;
+    t_type    tile_type;
 }t_tile;
 
 typedef struct s_game
@@ -87,6 +97,7 @@ typedef struct s_game
     t_floor     floor_img;
     t_col       col_img;
     char       **map_tiles;
+    t_tile     **map;
 }t_game;
 
 // INIT_GAME
@@ -105,5 +116,8 @@ int		player_movements(int key_code);
 
 // RENDER
 void    put_tiles(t_game mlx);
+
+// TILEMAP
+t_tile    **generate_tilemap(t_game *mlx);
 
 #endif

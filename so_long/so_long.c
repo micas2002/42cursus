@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:36:11 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/22 16:05:06 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/26 17:18:15 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	so_long(int fd)
 		ft_putendl_fd("ERROR\nINVALID MAP", 2);
 		return ;
 	}
+    mlx.map = generate_tilemap(&mlx);
 	mlx.mlx_ptr = mlx_init();
 	mlx.window = mlx_new_window(mlx.mlx_ptr, (mlx.map_info.size.x * 64), 
             (mlx.map_info.size.y * 64), "game");
