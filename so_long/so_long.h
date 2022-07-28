@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:28:49 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/26 17:27:51 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/28 13:25:24 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@
 # define PATH "/home/miguel/projects/42cursus/so_long/map.ber"
 
 // PROTOTYPES
-
-typedef struct s_player
-{
-	void    *player_img;
-}	t_player;
 
 typedef struct s_wall
 {
@@ -80,9 +75,21 @@ typedef enum s_type
 
 typedef struct s_tile
 {
-    t_vector    pos;
-    t_type    tile_type;
+    t_vector        pos;
+    t_type          tile_type;
+    t_type          og_type;
+    struct s_tile	*up;
+	struct s_tile	*down;
+	struct s_tile	*left;
+	struct s_tile	*right;
+    
 }t_tile;
+
+typedef struct s_player
+{
+	void    *player_img;
+    t_tile  *tile;
+}	t_player;
 
 typedef struct s_game
 {
@@ -91,7 +98,7 @@ typedef struct s_game
     t_map_info  map_info;
 	t_vector	window_size;
     t_vector    img_size;
-    t_player    player_img;
+    t_player    player;
     t_wall      wall_img;
     t_exit      exit_img;
     t_floor     floor_img;
@@ -105,19 +112,22 @@ int    init_game(t_game mlx);
 void    open_imgs(t_game *mlx);
 
 // VARS_UTILS
-int		keys(int key_code);
+int		keys(int key_code, t_game *mlx);
 int		close_window(void);
 
 // MAP_UTILS
 int		check_map(int fd, t_game *mlx);
 
 // PLAYER_UTILS
-int		player_movements(int key_code);
+int		player_movements(int key_code, t_game *mlx);
 
 // RENDER
 void    put_tiles(t_game mlx);
 
 // TILEMAP
 t_tile    **generate_tilemap(t_game *mlx);
+
+//MOVE_TO
+void    move_to_floor(t_game *mlx, t_tile *tile);
 
 #endif

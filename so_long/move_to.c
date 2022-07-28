@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vars_utils.c                                       :+:      :+:    :+:   */
+/*   move_to.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 16:12:32 by mibernar          #+#    #+#             */
-/*   Updated: 2022/07/28 12:14:24 by miguel           ###   ########.fr       */
+/*   Created: 2022/07/28 12:38:45 by miguel            #+#    #+#             */
+/*   Updated: 2022/07/28 12:52:55 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(void)
+void    move_to_floor(t_game *mlx, t_tile *tile)
 {
-	exit (0);
-	return (0);
-}
-
-int	keys(int key_code, t_game *mlx)
-{
-	if (key_code == 65307)
-		exit (0);
-	else if (key_code == 119 || key_code == 97 || key_code == 115
-		|| key_code == 100)
-		player_movements(key_code, mlx);
-	return (0);
+    tile->tile_type = PLAYER;
+    if (mlx->player.tile->tile_type != EXIT)
+		mlx->player.tile->tile_type = FLOOR;
+	mlx->player.tile = tile;
 }

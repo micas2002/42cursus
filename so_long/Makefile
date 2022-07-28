@@ -6,12 +6,12 @@
 #    By: miguel <miguel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 11:25:56 by mibernar          #+#    #+#              #
-#    Updated: 2022/07/26 17:07:14 by miguel           ###   ########.fr        #
+#    Updated: 2022/07/28 12:53:11 by miguel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = so_long.c vars_utils.c map_utils.c player_utils.c open_imgs.c render.c \
-		tilemap.c
+		tilemap.c move_to.c
 
 OBJS = $(SRCS:.c=.o)
 

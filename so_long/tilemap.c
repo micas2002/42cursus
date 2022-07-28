@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 09:36:20 by miguel            #+#    #+#             */
-/*   Updated: 2022/07/26 17:20:53 by miguel           ###   ########.fr       */
+/*   Updated: 2022/07/28 13:26:15 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ char  get_type(char tile)
         return ('E');
 }
 
+void	setup_tile(t_tile **tilemap, int x, int y)
+{
+	tilemap[y][x].og_type = tilemap[y][x].tile_type;
+	tilemap[y][x].pos.x = x * 64;
+	tilemap[y][x].pos.y = y * 64;
+	if (y != 0)
+		tilemap[y][x].up = &tilemap[y - 1][x];
+	if (tilemap[y + 1] != NULL)
+		tilemap[y][x].down = &tilemap[y + 1][x];
+	if (x != 0)
+		tilemap[y][x].left = &tilemap[y][x - 1];
+	tilemap[y][x].right = &tilemap[y][x + 1];
+}
+
 t_tile    **generate_tilemap(t_game *mlx)
 {
     t_tile  **tile_map;
@@ -63,7 +77,10 @@ t_tile    **generate_tilemap(t_game *mlx)
     {
         y = -1;
         while (mlx->map_tiles[x][y++] != '\0')
+        {
             tile_map[x][y].tile_type = get_type(mlx->map_tiles[x][y]);
+            setup_tile(tile_map, y, x);
+        }
         x++;
     }
     return (tile_map);
